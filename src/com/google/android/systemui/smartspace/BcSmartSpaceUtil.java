@@ -201,13 +201,14 @@ public final class BcSmartSpaceUtil {
     }
 
     public static Intent getOpenCalendarIntent() {
-        return new Intent("android.intent.action.VIEW")
+        return new Intent(Intent.ACTION_VIEW)
                 .setData(
                         ContentUris.appendId(
                                         CalendarContract.CONTENT_URI.buildUpon().appendPath("time"),
                                         System.currentTimeMillis())
                                 .build())
-                .addFlags(270532608);
+                .addFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
     }
 
     // Workaround for Google weather

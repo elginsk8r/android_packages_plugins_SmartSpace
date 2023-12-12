@@ -35,7 +35,7 @@ public class IcuDateTextView extends DoubleShadowTextView {
                     @Override // android.content.BroadcastReceiver
                     public void onReceive(Context context2, Intent intent) {
                         IcuDateTextView.this.onTimeChanged(
-                                !"android.intent.action.TIME_TICK".equals(intent.getAction()));
+                                !intent.getAction().equals(Intent.ACTION_TIME_TICK));
                     }
                 };
     }
@@ -44,8 +44,8 @@ public class IcuDateTextView extends DoubleShadowTextView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.intent.action.TIME_SET");
-        intentFilter.addAction("android.intent.action.TIMEZONE_CHANGED");
+        intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
+        intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         getContext().registerReceiver(this.mIntentReceiver, intentFilter);
         onTimeChanged(true);
         this.mHandler = new Handler();
