@@ -14,18 +14,20 @@ public final class BcSmartspaceSubcardLoggingInfo {
     }
 
     public final boolean equals(Object obj) {
-        boolean z = true;
         if (this == obj) {
             return true;
         }
+
         if (!(obj instanceof BcSmartspaceSubcardLoggingInfo)) {
             return false;
         }
+
         BcSmartspaceSubcardLoggingInfo bcSmartspaceSubcardLoggingInfo = (BcSmartspaceSubcardLoggingInfo) obj;
         if (mClickedSubcardIndex != bcSmartspaceSubcardLoggingInfo.mClickedSubcardIndex || !Objects.equals(mSubcards, bcSmartspaceSubcardLoggingInfo.mSubcards)) {
-            z = false;
+            return false;
         }
-        return z;
+
+        return true;
     }
 
     public final String toString() {

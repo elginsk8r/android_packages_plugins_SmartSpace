@@ -3,6 +3,7 @@ package com.google.android.systemui.smartspace.logging;
 import java.util.Objects;
 
 public final class BcSmartspaceCardMetadataLoggingInfo {
+
     public final int mCardTypeId;
     public final int mInstanceId;
 
@@ -12,18 +13,20 @@ public final class BcSmartspaceCardMetadataLoggingInfo {
     }
 
     public final boolean equals(Object obj) {
-        boolean z = true;
         if (this == obj) {
             return true;
         }
+
         if (!(obj instanceof BcSmartspaceCardMetadataLoggingInfo)) {
             return false;
         }
+
         BcSmartspaceCardMetadataLoggingInfo bcSmartspaceCardMetadataLoggingInfo = (BcSmartspaceCardMetadataLoggingInfo) obj;
         if (mInstanceId != bcSmartspaceCardMetadataLoggingInfo.mInstanceId || mCardTypeId != bcSmartspaceCardMetadataLoggingInfo.mCardTypeId) {
-            z = false;
+            return false;
         }
-        return z;
+
+        return true;
     }
 
     public final String toString() {

@@ -3,6 +3,7 @@ package com.google.android.systemui.smartspace.logging;
 import java.util.Objects;
 
 public final class BcSmartspaceCardLoggingInfo {
+
     public final int mCardinality;
     public final int mDisplaySurface;
     public int mFeatureType;
@@ -24,18 +25,27 @@ public final class BcSmartspaceCardLoggingInfo {
     }
 
     public final boolean equals(Object obj) {
-        boolean z = true;
         if (this == obj) {
             return true;
         }
+
         if (!(obj instanceof BcSmartspaceCardLoggingInfo)) {
             return false;
         }
-        BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo = (BcSmartspaceCardLoggingInfo) obj;
-        if (mInstanceId != bcSmartspaceCardLoggingInfo.mInstanceId || mDisplaySurface != bcSmartspaceCardLoggingInfo.mDisplaySurface || mRank != bcSmartspaceCardLoggingInfo.mRank || mCardinality != bcSmartspaceCardLoggingInfo.mCardinality || mFeatureType != bcSmartspaceCardLoggingInfo.mFeatureType || mReceivedLatency != bcSmartspaceCardLoggingInfo.mReceivedLatency || mUid != bcSmartspaceCardLoggingInfo.mUid || !Objects.equals(mSubcardInfo, bcSmartspaceCardLoggingInfo.mSubcardInfo)) {
-            z = false;
+
+        final BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo = (BcSmartspaceCardLoggingInfo) obj;
+        if (mInstanceId != bcSmartspaceCardLoggingInfo.mInstanceId
+                || mDisplaySurface != bcSmartspaceCardLoggingInfo.mDisplaySurface
+                || mRank != bcSmartspaceCardLoggingInfo.mRank
+                || mCardinality != bcSmartspaceCardLoggingInfo.mCardinality
+                || mFeatureType != bcSmartspaceCardLoggingInfo.mFeatureType
+                || mReceivedLatency != bcSmartspaceCardLoggingInfo.mReceivedLatency
+                || mUid != bcSmartspaceCardLoggingInfo.mUid
+                || !Objects.equals(mSubcardInfo, bcSmartspaceCardLoggingInfo.mSubcardInfo)) {
+            return false;
         }
-        return z;
+
+        return true;
     }
 
     public final String toString() {
@@ -70,6 +80,12 @@ public final class BcSmartspaceCardLoggingInfo {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(mInstanceId), Integer.valueOf(mDisplaySurface), Integer.valueOf(mRank), Integer.valueOf(mCardinality), Integer.valueOf(mFeatureType), Integer.valueOf(mReceivedLatency), Integer.valueOf(mUid), mSubcardInfo);
+        return Objects.hash(Integer.valueOf(mInstanceId),
+                Integer.valueOf(mDisplaySurface),
+                Integer.valueOf(mRank),
+                Integer.valueOf(mCardinality),
+                Integer.valueOf(mFeatureType),
+                Integer.valueOf(mReceivedLatency),
+                Integer.valueOf(mUid), mSubcardInfo);
     }
 }
