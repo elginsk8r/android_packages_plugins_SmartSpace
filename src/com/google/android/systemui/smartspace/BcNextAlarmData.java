@@ -7,6 +7,7 @@ import android.app.smartspace.uitemplatedata.BaseTemplateData;
 import android.app.smartspace.uitemplatedata.TapAction;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.provider.AlarmClock;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -14,7 +15,7 @@ import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public final class BcNextAlarmData {
-    public static final SmartspaceAction SHOW_ALARMS_ACTION = new SmartspaceAction.Builder("nextAlarmId", "Next alarm").setIntent(new Intent("android.intent.action.SHOW_ALARMS")).build();
+    public static final SmartspaceAction SHOW_ALARMS_ACTION = new SmartspaceAction.Builder("nextAlarmId", "Next alarm").setIntent(new Intent(AlarmClock.ACTION_SHOW_ALARMS)).build();
     public String mDescription;
     public SmartspaceTarget mHolidayAlarmsTarget;
     public Drawable mImage;

@@ -14,6 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.net.Uri;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
@@ -132,7 +133,9 @@ public final class BcSmartSpaceUtil {
     }
 
     public static Intent getOpenCalendarIntent() {
-        return new Intent("android.intent.action.VIEW").setData(ContentUris.appendId(CalendarContract.CONTENT_URI.buildUpon().appendPath("time"), System.currentTimeMillis()).build()).addFlags(270532608);
+        return new Intent(Intent.ACTION_VIEW)
+            .setData(ContentUris.appendId(CalendarContract.CONTENT_URI.buildUpon().appendPath("time"), System.currentTimeMillis()).build())
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
     }
 
     // Workaround for Google weather
