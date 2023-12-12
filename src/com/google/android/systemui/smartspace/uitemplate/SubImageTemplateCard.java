@@ -20,13 +20,16 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Size;
 import android.widget.ImageView;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.android.systemui.bcsmartspace.R;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.BcSmartSpaceUtil;
 import com.google.android.systemui.smartspace.BcSmartspaceCardSecondary;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 import com.google.android.systemui.smartspace.logging.LogBuilder;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;

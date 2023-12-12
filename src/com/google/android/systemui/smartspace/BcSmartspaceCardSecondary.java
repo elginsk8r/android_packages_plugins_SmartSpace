@@ -4,6 +4,7 @@ import android.app.smartspace.SmartspaceTarget;
 import android.content.Context;
 import android.util.AttributeSet;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 

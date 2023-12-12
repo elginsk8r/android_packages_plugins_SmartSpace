@@ -22,8 +22,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
+
 import com.android.systemui.bcsmartspace.R;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.android.systemui.plugins.FalsingManager;
@@ -33,6 +35,7 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggerUtil
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceSubcardLoggingInfo;
 import com.google.android.systemui.smartspace.uitemplate.BaseTemplateCard;
+
 import java.time.DateTimeException;
 import java.time.Instant;
 import java.util.ArrayList;

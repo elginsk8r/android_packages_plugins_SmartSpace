@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
 import com.android.systemui.bcsmartspace.R;
 
 public class PageIndicator extends LinearLayout {
