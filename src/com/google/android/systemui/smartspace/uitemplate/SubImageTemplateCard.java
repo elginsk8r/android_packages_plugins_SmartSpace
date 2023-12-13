@@ -134,32 +134,32 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                 ContentResolver contentResolver,
                 int i,
                 Icon.OnDrawableLoadedListener listener) {
-            this.mUri = uri;
-            this.mHeightInPx = i;
-            this.mContentResolver = contentResolver;
-            this.mListener = listener;
+            mUri = uri;
+            mHeightInPx = i;
+            mContentResolver = contentResolver;
+            mListener = listener;
         }
     }
 
     public SubImageTemplateCard(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mIconDrawableCache = new HashMap();
-        this.mHandler = new Handler();
-        this.mImageHeight =
+        mIconDrawableCache = new HashMap();
+        mHandler = new Handler();
+        mImageHeight =
                 getResources().getDimensionPixelOffset(R.dimen.enhanced_smartspace_card_height);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        HashMap hashMap = this.mIconDrawableCache;
+        HashMap hashMap = mIconDrawableCache;
         if (hashMap != null) {
             hashMap.clear();
         }
-        ImageView imageView = this.mImageView;
+        ImageView imageView = mImageView;
         if (imageView != null) {
             imageView.getLayoutParams().width = -2;
-            this.mImageView.setImageDrawable(null);
-            this.mImageView.setBackgroundTintList(null);
+            mImageView.setImageDrawable(null);
+            mImageView.setBackgroundTintList(null);
         }
     }
 
@@ -176,7 +176,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                 && !templateData.getSubImages().isEmpty()) {
             final List subImages = templateData.getSubImages();
             TapAction subImageAction = templateData.getSubImageAction();
-            if (this.mImageView == null) {
+            if (mImageView == null) {
                 Log.w(
                         "SubImageTemplateCard",
                         "No image view can be updated. Skipping background update...");
@@ -184,13 +184,12 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                 Bundle extras = subImageAction.getExtras();
                 String string = extras.getString("imageDimensionRatio", "");
                 if (!TextUtils.isEmpty(string)) {
-                    this.mImageView.getLayoutParams().width = 0;
-                    ((ConstraintLayout.LayoutParams) this.mImageView.getLayoutParams())
-                                    .dimensionRatio =
+                    mImageView.getLayoutParams().width = 0;
+                    ((ConstraintLayout.LayoutParams) mImageView.getLayoutParams()).dimensionRatio =
                             string;
                 }
                 if (extras.getBoolean("shouldShowBackground", false)) {
-                    this.mImageView.setBackgroundTintList(
+                    mImageView.setBackgroundTintList(
                             ColorStateList.valueOf(
                                     getContext().getColor(R.color.smartspace_button_background)));
                 }
@@ -206,8 +205,8 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
             ContentResolver contentResolver =
                     getContext().getApplicationContext().getContentResolver();
             final TreeMap treeMap = new TreeMap();
-            final WeakReference weakReference = new WeakReference(this.mImageView);
-            final String str = this.mPrevSmartspaceTargetId;
+            final WeakReference weakReference = new WeakReference(mImageView);
+            final String str = mPrevSmartspaceTargetId;
             for (int i2 = 0; i2 < subImages.size(); i2++) {
                 android.app.smartspace.uitemplatedata.Icon icon =
                         (android.app.smartspace.uitemplatedata.Icon) subImages.get(i2);
@@ -321,19 +320,18 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                                     }
                                 }
                             };
-                    if (this.mIconDrawableCache.containsKey(sb)
-                            && this.mIconDrawableCache.get(sb) != null) {
-                        listener.onDrawableLoaded((Drawable) this.mIconDrawableCache.get(sb));
+                    if (mIconDrawableCache.containsKey(sb) && mIconDrawableCache.get(sb) != null) {
+                        listener.onDrawableLoaded((Drawable) mIconDrawableCache.get(sb));
                     } else if (icon2.getType() == 4) {
                         new LoadUriTask()
                                 .execute(
                                         new DrawableWrapper(
                                                 icon2.getUri(),
                                                 contentResolver,
-                                                this.mImageHeight,
+                                                mImageHeight,
                                                 listener));
                     } else {
-                        icon2.loadDrawableAsync(getContext(), listener, this.mHandler);
+                        icon2.loadDrawableAsync(getContext(), listener, mHandler);
                     }
                 }
             }
@@ -355,6 +353,6 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
 
     public final void onFinishInflate() {
         super /*android.view.ViewGroup*/.onFinishInflate();
-        this.mImageView = (ImageView) findViewById(R.id.image_view);
+        mImageView = (ImageView) findViewById(R.id.image_view);
     }
 }

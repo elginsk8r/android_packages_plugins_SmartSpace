@@ -36,7 +36,7 @@ public class BcSmartspaceCardCombinationAtStore extends BcSmartspaceCardCombinat
                 || (smartspaceAction = actionChips.get(0)) == null) {
             return false;
         }
-        ConstraintLayout constraintLayout = this.mFirstSubCard;
+        ConstraintLayout constraintLayout = mFirstSubCard;
         boolean z =
                 (constraintLayout instanceof BcSmartspaceCardShoppingList)
                         && ((BcSmartspaceCardShoppingList) constraintLayout)
@@ -44,7 +44,7 @@ public class BcSmartspaceCardCombinationAtStore extends BcSmartspaceCardCombinat
                                         smartspaceTarget,
                                         smartspaceEventNotifier,
                                         bcSmartspaceCardLoggingInfo);
-        ConstraintLayout constraintLayout2 = this.mSecondSubCard;
+        ConstraintLayout constraintLayout2 = mSecondSubCard;
         boolean z2 =
                 constraintLayout2 != null
                         && fillSubCard(
@@ -54,7 +54,7 @@ public class BcSmartspaceCardCombinationAtStore extends BcSmartspaceCardCombinat
                                 smartspaceEventNotifier,
                                 bcSmartspaceCardLoggingInfo);
         if (z) {
-            this.mFirstSubCard.setBackgroundResource(R.drawable.bg_smartspace_combination_sub_card);
+            mFirstSubCard.setBackgroundResource(R.drawable.bg_smartspace_combination_sub_card);
         }
         return z && z2;
     }

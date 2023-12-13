@@ -34,24 +34,24 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void setTextColor(int i) {
-        if (this.mFirstSubCard.getChildCount() != 0) {
-            ((BcSmartspaceCardSecondary) this.mFirstSubCard.getChildAt(0)).setTextColor(i);
+        if (mFirstSubCard.getChildCount() != 0) {
+            ((BcSmartspaceCardSecondary) mFirstSubCard.getChildAt(0)).setTextColor(i);
         }
-        if (this.mSecondSubCard.getChildCount() != 0) {
-            ((BcSmartspaceCardSecondary) this.mSecondSubCard.getChildAt(0)).setTextColor(i);
+        if (mSecondSubCard.getChildCount() != 0) {
+            ((BcSmartspaceCardSecondary) mSecondSubCard.getChildAt(0)).setTextColor(i);
         }
     }
 
     public final void onFinishInflate() {
         super /*android.view.ViewGroup*/.onFinishInflate();
-        this.mFirstSubCard = findViewById(R.id.first_sub_card_container);
-        this.mSecondSubCard = findViewById(R.id.second_sub_card_container);
+        mFirstSubCard = findViewById(R.id.first_sub_card_container);
+        mSecondSubCard = findViewById(R.id.second_sub_card_container);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstSubCard, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondSubCard, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstSubCard, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondSubCard, 8);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -71,7 +71,7 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
                 baseTemplateData = null;
             }
             if (!setupSubCard(
-                    this.mFirstSubCard,
+                    mFirstSubCard,
                     baseTemplateData2,
                     smartspaceTarget,
                     smartspaceEventNotifier,
@@ -80,7 +80,7 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
             }
             if (baseTemplateData != null
                     && !setupSubCard(
-                            this.mSecondSubCard,
+                            mSecondSubCard,
                             baseTemplateData,
                             smartspaceTarget,
                             smartspaceEventNotifier,

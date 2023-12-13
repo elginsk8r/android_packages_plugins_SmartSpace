@@ -28,35 +28,35 @@ public final class NewCardInfo {
             boolean z,
             long j,
             PackageInfo packageInfo) {
-        this.mCard = smartspaceCard;
-        this.mIsPrimary = z;
-        this.mIntent = intent;
-        this.mPublishTime = j;
-        this.mPackageInfo = packageInfo;
+        mCard = smartspaceCard;
+        mIsPrimary = z;
+        mIntent = intent;
+        mPublishTime = j;
+        mPackageInfo = packageInfo;
     }
 
     public boolean isPrimary() {
-        return this.mIsPrimary;
+        return mIsPrimary;
     }
 
     public Bitmap retrieveIcon(Context context) {
-        if (this.mCard.icon == null) {
+        if (mCard.icon == null) {
             return null;
         }
-        Bitmap bitmap = (Bitmap) retrieveFromIntent(this.mCard.icon.key, this.mIntent);
+        Bitmap bitmap = (Bitmap) retrieveFromIntent(mCard.icon.key, mIntent);
         if (bitmap != null) {
             return bitmap;
         }
         try {
-            if (!TextUtils.isEmpty(this.mCard.icon.uri)) {
+            if (!TextUtils.isEmpty(mCard.icon.uri)) {
                 return MediaStore.Images.Media.getBitmap(
-                        context.getContentResolver(), Uri.parse(this.mCard.icon.uri));
+                        context.getContentResolver(), Uri.parse(mCard.icon.uri));
             }
-            if (!TextUtils.isEmpty(this.mCard.icon.gsaResourceName)) {
+            if (!TextUtils.isEmpty(mCard.icon.gsaResourceName)) {
                 Intent.ShortcutIconResource shortcutIconResource =
                         new Intent.ShortcutIconResource();
                 shortcutIconResource.packageName = BcSmartSpaceUtil.GSA_PACKAGE;
-                shortcutIconResource.resourceName = this.mCard.icon.gsaResourceName;
+                shortcutIconResource.resourceName = mCard.icon.gsaResourceName;
                 return createIconBitmap(shortcutIconResource, context);
             }
             return null;
@@ -64,9 +64,9 @@ public final class NewCardInfo {
             Log.e(
                     "NewCardInfo",
                     "retrieving bitmap uri="
-                            + this.mCard.icon.uri
+                            + mCard.icon.uri
                             + " gsaRes="
-                            + this.mCard.icon.gsaResourceName);
+                            + mCard.icon.gsaResourceName);
             return null;
         }
     }
@@ -79,9 +79,9 @@ public final class NewCardInfo {
             retrieveIcon.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             cardWrapper.icon = byteArrayOutputStream.toByteArray();
         }
-        cardWrapper.card = this.mCard;
-        cardWrapper.publishTime = this.mPublishTime;
-        PackageInfo packageInfo = this.mPackageInfo;
+        cardWrapper.card = mCard;
+        cardWrapper.publishTime = mPublishTime;
+        PackageInfo packageInfo = mPackageInfo;
         if (packageInfo != null) {
             cardWrapper.gsaVersionCode = packageInfo.versionCode;
             cardWrapper.gsaUpdateTime = packageInfo.lastUpdateTime;
@@ -115,10 +115,10 @@ public final class NewCardInfo {
     }
 
     public int getUserId() {
-        return this.mIntent.getIntExtra("uid", -1);
+        return mIntent.getIntExtra("uid", -1);
     }
 
     public boolean shouldDiscard() {
-        return this.mCard == null || this.mCard.shouldDiscard;
+        return mCard == null || mCard.shouldDiscard;
     }
 }

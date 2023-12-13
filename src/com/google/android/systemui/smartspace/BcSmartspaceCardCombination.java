@@ -96,14 +96,14 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstSubCard, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondSubCard, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstSubCard, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondSubCard, 8);
     }
 
     public final void onFinishInflate() {
         super.onFinishInflate();
-        this.mFirstSubCard = findViewById(R.id.first_sub_card);
-        this.mSecondSubCard = findViewById(R.id.second_sub_card);
+        mFirstSubCard = findViewById(R.id.first_sub_card);
+        mSecondSubCard = findViewById(R.id.second_sub_card);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -120,9 +120,9 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
             return false;
         }
         boolean z =
-                this.mFirstSubCard != null
+                mFirstSubCard != null
                         && fillSubCard(
-                                this.mFirstSubCard,
+                                mFirstSubCard,
                                 smartspaceTarget,
                                 smartspaceAction,
                                 smartspaceEventNotifier,
@@ -130,7 +130,7 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
         if (actionChips.size() > 1 && actionChips.get(1) != null) {
             z3 =
                     fillSubCard(
-                            this.mSecondSubCard,
+                            mSecondSubCard,
                             smartspaceTarget,
                             actionChips.get(1),
                             smartspaceEventNotifier,
