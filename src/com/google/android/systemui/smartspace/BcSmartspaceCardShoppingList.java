@@ -26,26 +26,26 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
 
     public BcSmartspaceCardShoppingList(Context context) {
         super(context);
-        this.mListItems = new TextView[3];
+        mListItems = new TextView[3];
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mEmptyListMessageView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mListIconView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mCardPromptIconView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mCardPromptView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mEmptyListMessageView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptIconView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptView, 8);
         for (int i = 0; i < 3; i++) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mListItems[i], 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListItems[i], 8);
         }
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void setTextColor(int i) {
-        this.mCardPromptView.setTextColor(i);
-        this.mEmptyListMessageView.setTextColor(i);
+        mCardPromptView.setTextColor(i);
+        mEmptyListMessageView.setTextColor(i);
         for (int i2 = 0; i2 < 3; i2++) {
-            TextView textView = this.mListItems[i2];
+            TextView textView = mListItems[i2];
             if (textView == null) {
                 Log.w("BcSmartspaceCardShoppingList", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i2 + 1)));
                 return;
@@ -56,17 +56,17 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
 
     public BcSmartspaceCardShoppingList(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mListItems = new TextView[3];
+        mListItems = new TextView[3];
     }
 
     public final void onFinishInflate() {
         super.onFinishInflate();
-        this.mCardPromptView = (TextView) findViewById(R.id.card_prompt);
-        this.mEmptyListMessageView = (TextView) findViewById(R.id.empty_list_message);
-        this.mCardPromptIconView = (ImageView) findViewById(R.id.card_prompt_icon);
-        this.mListIconView = (ImageView) findViewById(R.id.list_icon);
+        mCardPromptView = (TextView) findViewById(R.id.card_prompt);
+        mEmptyListMessageView = (TextView) findViewById(R.id.empty_list_message);
+        mCardPromptIconView = (ImageView) findViewById(R.id.card_prompt_icon);
+        mListIconView = (ImageView) findViewById(R.id.list_icon);
         for (int i = 0; i < 3; i++) {
-            this.mListItems[i] = (TextView) findViewById(LIST_ITEM_TEXT_VIEW_IDS[i]);
+            mListItems[i] = (TextView) findViewById(LIST_ITEM_TEXT_VIEW_IDS[i]);
         }
     }
 
@@ -86,41 +86,41 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
             } else if (extras.containsKey("imageBitmap")) {
                 bitmap = (Bitmap) extras.get("imageBitmap");
             }
-            this.mCardPromptIconView.setImageBitmap(bitmap);
-            this.mListIconView.setImageBitmap(bitmap);
+            mCardPromptIconView.setImageBitmap(bitmap);
+            mListIconView.setImageBitmap(bitmap);
             if (extras.containsKey("cardPrompt")) {
                 String string = extras.getString("cardPrompt");
-                TextView textView = this.mCardPromptView;
+                TextView textView = mCardPromptView;
                 if (textView == null) {
                     Log.w("BcSmartspaceCardShoppingList", "No card prompt view to update");
                 } else {
                     textView.setText(string);
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mCardPromptView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptView, 0);
                 if (bitmap != null) {
-                    BcSmartspaceTemplateDataUtils.updateVisibility(this.mCardPromptIconView, 0);
+                    BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptIconView, 0);
                     return true;
                 }
                 return true;
             } else if (extras.containsKey("emptyListString")) {
                 String string2 = extras.getString("emptyListString");
-                TextView textView2 = this.mEmptyListMessageView;
+                TextView textView2 = mEmptyListMessageView;
                 if (textView2 == null) {
                     Log.w("BcSmartspaceCardShoppingList", "No empty list message view to update");
                 } else {
                     textView2.setText(string2);
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mEmptyListMessageView, 0);
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mListIconView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mEmptyListMessageView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 0);
                 return true;
             } else if (extras.containsKey("listItems")) {
                 String[] stringArray = extras.getStringArray("listItems");
                 if (stringArray.length == 0) {
                     return false;
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mListIconView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 0);
                 for (int i = 0; i < 3; i++) {
-                    TextView textView3 = this.mListItems[i];
+                    TextView textView3 = mListItems[i];
                     if (textView3 == null) {
                         Log.w("BcSmartspaceCardShoppingList", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i + 1)));
                         return true;

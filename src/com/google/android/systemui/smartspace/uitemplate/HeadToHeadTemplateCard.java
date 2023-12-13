@@ -34,26 +34,26 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void setTextColor(int i) {
-        this.mFirstCompetitorText.setTextColor(i);
-        this.mSecondCompetitorText.setTextColor(i);
+        mFirstCompetitorText.setTextColor(i);
+        mSecondCompetitorText.setTextColor(i);
     }
 
     public final void onFinishInflate() {
         super/*android.view.ViewGroup*/.onFinishInflate();
-        this.mHeadToHeadTitle = (TextView) findViewById(R.id.head_to_head_title);
-        this.mFirstCompetitorText = (TextView) findViewById(R.id.first_competitor_text);
-        this.mSecondCompetitorText = (TextView) findViewById(R.id.second_competitor_text);
-        this.mFirstCompetitorIcon = (ImageView) findViewById(R.id.first_competitor_icon);
-        this.mSecondCompetitorIcon = (ImageView) findViewById(R.id.second_competitor_icon);
+        mHeadToHeadTitle = (TextView) findViewById(R.id.head_to_head_title);
+        mFirstCompetitorText = (TextView) findViewById(R.id.first_competitor_text);
+        mSecondCompetitorText = (TextView) findViewById(R.id.second_competitor_text);
+        mFirstCompetitorIcon = (ImageView) findViewById(R.id.first_competitor_icon);
+        mSecondCompetitorIcon = (ImageView) findViewById(R.id.second_competitor_icon);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mHeadToHeadTitle, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorText, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorText, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorIcon, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorIcon, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mHeadToHeadTitle, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorText, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorText, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorIcon, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorIcon, 8);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -72,13 +72,13 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
         }
         if (templateData.getHeadToHeadTitle() != null) {
             Text headToHeadTitle = templateData.getHeadToHeadTitle();
-            TextView textView = this.mHeadToHeadTitle;
+            TextView textView = mHeadToHeadTitle;
             if (textView == null) {
                 Log.w("HeadToHeadTemplateCard", "No head-to-head title view to update");
                 z7 = false;
             } else {
                 BcSmartspaceTemplateDataUtils.setText(textView, headToHeadTitle);
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mHeadToHeadTitle, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mHeadToHeadTitle, 0);
                 z7 = true;
             }
             if (z7) {
@@ -86,13 +86,13 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                 boolean z8 = z;
                 if (templateData.getHeadToHeadFirstCompetitorText() != null) {
                     Text headToHeadFirstCompetitorText = templateData.getHeadToHeadFirstCompetitorText();
-                    TextView textView2 = this.mFirstCompetitorText;
+                    TextView textView2 = mFirstCompetitorText;
                     if (textView2 == null) {
                         Log.w("HeadToHeadTemplateCard", "No first competitor text view to update");
                         z6 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setText(textView2, headToHeadFirstCompetitorText);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorText, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorText, 0);
                         z6 = true;
                     }
                     if (!z6 && !z) {
@@ -104,13 +104,13 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                 boolean z9 = z8;
                 if (templateData.getHeadToHeadSecondCompetitorText() != null) {
                     Text headToHeadSecondCompetitorText = templateData.getHeadToHeadSecondCompetitorText();
-                    TextView textView3 = this.mSecondCompetitorText;
+                    TextView textView3 = mSecondCompetitorText;
                     if (textView3 == null) {
                         Log.w("HeadToHeadTemplateCard", "No second competitor text view to update");
                         z5 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setText(textView3, headToHeadSecondCompetitorText);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorText, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorText, 0);
                         z5 = true;
                     }
                     if (!z5 && !z8) {
@@ -122,13 +122,13 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                 boolean z10 = z9;
                 if (templateData.getHeadToHeadFirstCompetitorIcon() != null) {
                     Icon headToHeadFirstCompetitorIcon = templateData.getHeadToHeadFirstCompetitorIcon();
-                    ImageView imageView = this.mFirstCompetitorIcon;
+                    ImageView imageView = mFirstCompetitorIcon;
                     if (imageView == null) {
                         Log.w("HeadToHeadTemplateCard", "No first competitor icon view to update");
                         z4 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setIcon(imageView, headToHeadFirstCompetitorIcon);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorIcon, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorIcon, 0);
                         z4 = true;
                     }
                     if (!z4 && !z9) {
@@ -140,13 +140,13 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                 z2 = z10;
                 if (templateData.getHeadToHeadSecondCompetitorIcon() != null) {
                     Icon headToHeadSecondCompetitorIcon = templateData.getHeadToHeadSecondCompetitorIcon();
-                    ImageView imageView2 = this.mSecondCompetitorIcon;
+                    ImageView imageView2 = mSecondCompetitorIcon;
                     if (imageView2 == null) {
                         Log.w("HeadToHeadTemplateCard", "No second competitor icon view to update");
                         z3 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setIcon(imageView2, headToHeadSecondCompetitorIcon);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorIcon, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorIcon, 0);
                         z3 = true;
                     }
                     if (!z3) {

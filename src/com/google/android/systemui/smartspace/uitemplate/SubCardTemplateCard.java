@@ -30,19 +30,19 @@ public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void setTextColor(int i) {
-        this.mTextView.setTextColor(i);
+        mTextView.setTextColor(i);
     }
 
     public final void onFinishInflate() {
         super/*android.view.ViewGroup*/.onFinishInflate();
-        this.mImageView = (ImageView) findViewById(R.id.image_view);
-        this.mTextView = (TextView) findViewById(R.id.card_prompt);
+        mImageView = (ImageView) findViewById(R.id.image_view);
+        mTextView = (TextView) findViewById(R.id.card_prompt);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mImageView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mTextView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mTextView, 8);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -54,15 +54,15 @@ public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
             return false;
         }
         if (templateData.getSubCardIcon() != null) {
-            BcSmartspaceTemplateDataUtils.setIcon(this.mImageView, templateData.getSubCardIcon());
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mImageView, 0);
+            BcSmartspaceTemplateDataUtils.setIcon(mImageView, templateData.getSubCardIcon());
+            BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 0);
             z = true;
         } else {
             z = false;
         }
         if (!SmartspaceUtils.isEmpty(templateData.getSubCardText())) {
-            BcSmartspaceTemplateDataUtils.setText(this.mTextView, templateData.getSubCardText());
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mTextView, 0);
+            BcSmartspaceTemplateDataUtils.setText(mTextView, templateData.getSubCardText());
+            BcSmartspaceTemplateDataUtils.updateVisibility(mTextView, 0);
             z = true;
         }
         if (z && templateData.getSubCardAction() != null) {

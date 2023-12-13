@@ -15,17 +15,17 @@ public class ProtoStore {
     public final Context mContext;
 
     public ProtoStore(Context context) {
-        this.mContext = context.getApplicationContext();
+        mContext = context.getApplicationContext();
     }
 
     public void store(SmartspaceProto.CardWrapper cardWrapper, String str) {
         try {
-            FileOutputStream openFileOutput = this.mContext.openFileOutput(str, 0);
+            FileOutputStream openFileOutput = mContext.openFileOutput(str, 0);
             if (cardWrapper != null) {
                 openFileOutput.write(MessageNano.toByteArray(cardWrapper));
             } else {
                 Log.d("ProtoStore", "deleting " + str);
-                this.mContext.deleteFile(str);
+                mContext.deleteFile(str);
             }
             if (openFileOutput != null) {
                 openFileOutput.close();
@@ -38,7 +38,7 @@ public class ProtoStore {
     }
 
     public <T extends MessageNano> boolean load(String str, T t) {
-        File fileStreamPath = this.mContext.getFileStreamPath(str);
+        File fileStreamPath = mContext.getFileStreamPath(str);
         try {
             FileInputStream fileInputStream = new FileInputStream(fileStreamPath);
             int length = (int) fileStreamPath.length();

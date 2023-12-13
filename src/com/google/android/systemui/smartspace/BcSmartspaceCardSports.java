@@ -31,27 +31,27 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSummaryView, 4);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorScore, 4);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorScore, 4);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorLogo, 4);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorLogo, 4);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSummaryView, 4);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorScore, 4);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorScore, 4);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorLogo, 4);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorLogo, 4);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void setTextColor(int i) {
-        this.mSummaryView.setTextColor(i);
-        this.mFirstCompetitorScore.setTextColor(i);
-        this.mSecondCompetitorScore.setTextColor(i);
+        mSummaryView.setTextColor(i);
+        mFirstCompetitorScore.setTextColor(i);
+        mSecondCompetitorScore.setTextColor(i);
     }
 
     public final void onFinishInflate() {
         super.onFinishInflate();
-        this.mSummaryView = (TextView) findViewById(R.id.match_time_summary);
-        this.mFirstCompetitorScore = (TextView) findViewById(R.id.first_competitor_score);
-        this.mSecondCompetitorScore = (TextView) findViewById(R.id.second_competitor_score);
-        this.mFirstCompetitorLogo = (ImageView) findViewById(R.id.first_competitor_logo);
-        this.mSecondCompetitorLogo = (ImageView) findViewById(R.id.second_competitor_logo);
+        mSummaryView = (TextView) findViewById(R.id.match_time_summary);
+        mFirstCompetitorScore = (TextView) findViewById(R.id.first_competitor_score);
+        mSecondCompetitorScore = (TextView) findViewById(R.id.second_competitor_score);
+        mFirstCompetitorLogo = (ImageView) findViewById(R.id.first_competitor_logo);
+        mSecondCompetitorLogo = (ImageView) findViewById(R.id.second_competitor_logo);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -69,11 +69,11 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         }
         if (extras.containsKey("matchTimeSummary")) {
             String string = extras.getString("matchTimeSummary");
-            if (this.mSummaryView == null) {
+            if (mSummaryView == null) {
                 Log.w("BcSmartspaceCardSports", "No match time summary view to update");
             } else {
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mSummaryView, 0);
-                this.mSummaryView.setText(string);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mSummaryView, 0);
+                mSummaryView.setText(string);
             }
             z = true;
         } else {
@@ -81,42 +81,42 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         }
         if (extras.containsKey("firstCompetitorScore")) {
             String string2 = extras.getString("firstCompetitorScore");
-            if (this.mFirstCompetitorScore == null) {
+            if (mFirstCompetitorScore == null) {
                 Log.w("BcSmartspaceCardSports", "No first competitor logo view to update");
             } else {
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorScore, 0);
-                this.mFirstCompetitorScore.setText(string2);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorScore, 0);
+                mFirstCompetitorScore.setText(string2);
             }
             z = true;
         }
         if (extras.containsKey("secondCompetitorScore")) {
             String string3 = extras.getString("secondCompetitorScore");
-            if (this.mSecondCompetitorScore == null) {
+            if (mSecondCompetitorScore == null) {
                 Log.w("BcSmartspaceCardSports", "No second competitor logo view to update");
             } else {
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorScore, 0);
-                this.mSecondCompetitorScore.setText(string3);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorScore, 0);
+                mSecondCompetitorScore.setText(string3);
             }
             z = true;
         }
         if (extras.containsKey("firstCompetitorLogo")) {
             Bitmap bitmap = (Bitmap) extras.get("firstCompetitorLogo");
-            if (this.mFirstCompetitorLogo == null) {
+            if (mFirstCompetitorLogo == null) {
                 Log.w("BcSmartspaceCardSports", "No first competitor logo view to update");
             } else {
-                BcSmartspaceTemplateDataUtils.updateVisibility(this.mFirstCompetitorLogo, 0);
-                this.mFirstCompetitorLogo.setImageBitmap(bitmap);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorLogo, 0);
+                mFirstCompetitorLogo.setImageBitmap(bitmap);
             }
             z = true;
         }
         if (extras.containsKey("secondCompetitorLogo")) {
             Bitmap bitmap2 = (Bitmap) extras.get("secondCompetitorLogo");
-            if (this.mSecondCompetitorLogo == null) {
+            if (mSecondCompetitorLogo == null) {
                 Log.w("BcSmartspaceCardSports", "No second competitor logo view to update");
                 return true;
             }
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mSecondCompetitorLogo, 0);
-            this.mSecondCompetitorLogo.setImageBitmap(bitmap2);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorLogo, 0);
+            mSecondCompetitorLogo.setImageBitmap(bitmap2);
             return true;
         }
         return z;

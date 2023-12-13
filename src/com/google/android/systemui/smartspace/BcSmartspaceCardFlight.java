@@ -30,12 +30,12 @@ public class BcSmartspaceCardFlight extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mQrCodeView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mQrCodeView, 8);
     }
 
     public final void onFinishInflate() {
         super.onFinishInflate();
-        this.mQrCodeView = (ImageView) findViewById(R.id.flight_qr_code);
+        mQrCodeView = (ImageView) findViewById(R.id.flight_qr_code);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -51,12 +51,12 @@ public class BcSmartspaceCardFlight extends BcSmartspaceCardSecondary {
             return false;
         }
         Bitmap bitmap = (Bitmap) extras.get("qrCodeBitmap");
-        if (this.mQrCodeView == null) {
+        if (mQrCodeView == null) {
             Log.w("BcSmartspaceCardFlight", "No flight QR code view to update");
         } else {
-            this.mQrCodeView.setImageBitmap(bitmap);
+            mQrCodeView.setImageBitmap(bitmap);
         }
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mQrCodeView, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mQrCodeView, 0);
         return true;
     }
 }

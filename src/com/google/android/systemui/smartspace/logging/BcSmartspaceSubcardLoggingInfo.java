@@ -22,7 +22,7 @@ public final class BcSmartspaceSubcardLoggingInfo {
             return false;
         }
         BcSmartspaceSubcardLoggingInfo bcSmartspaceSubcardLoggingInfo = (BcSmartspaceSubcardLoggingInfo) obj;
-        if (this.mClickedSubcardIndex != bcSmartspaceSubcardLoggingInfo.mClickedSubcardIndex || !Objects.equals(this.mSubcards, bcSmartspaceSubcardLoggingInfo.mSubcards)) {
+        if (mClickedSubcardIndex != bcSmartspaceSubcardLoggingInfo.mClickedSubcardIndex || !Objects.equals(mSubcards, bcSmartspaceSubcardLoggingInfo.mSubcards)) {
             z = false;
         }
         return z;
@@ -30,22 +30,22 @@ public final class BcSmartspaceSubcardLoggingInfo {
 
     public final String toString() {
         StringBuilder m = LogBuilder.m("BcSmartspaceSubcardLoggingInfo{mSubcards=");
-        m.append(this.mSubcards);
+        m.append(mSubcards);
         m.append(", mClickedSubcardIndex=");
-        return LogBuilder.m(m, this.mClickedSubcardIndex, '}');
+        return LogBuilder.m(m, mClickedSubcardIndex, '}');
     }
 
     public BcSmartspaceSubcardLoggingInfo(Builder builder) {
         List<BcSmartspaceCardMetadataLoggingInfo> list = builder.mSubcards;
         if (list != null) {
-            this.mSubcards = list;
+            mSubcards = list;
         } else {
-            this.mSubcards = new ArrayList();
+            mSubcards = new ArrayList();
         }
-        this.mClickedSubcardIndex = builder.mClickedSubcardIndex;
+        mClickedSubcardIndex = builder.mClickedSubcardIndex;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.mSubcards, Integer.valueOf(this.mClickedSubcardIndex));
+        return Objects.hash(mSubcards, Integer.valueOf(mClickedSubcardIndex));
     }
 }

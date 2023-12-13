@@ -28,11 +28,11 @@ public class IcuDateTextView extends DoubleShadowTextView {
 
     public IcuDateTextView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        this.mTicker = this::onTimeTick;
-        this.mIntentReceiver = new BroadcastReceiver() { // from class: com.google.android.systemui.smartspace.IcuDateTextView.1
+        mTicker = this::onTimeTick;
+        mIntentReceiver = new BroadcastReceiver() { // from class: com.google.android.systemui.smartspace.IcuDateTextView.1
             @Override // android.content.BroadcastReceiver
             public void onReceive(Context context2, Intent intent) {
-                IcuDateTextView.this.onTimeChanged(!intent.getAction().equals(Intent.ACTION_TIME_TICK));
+                IcuDateTextView.onTimeChanged(!intent.getAction().equals(Intent.ACTION_TIME_TICK));
             }
         };
     }
@@ -43,35 +43,35 @@ public class IcuDateTextView extends DoubleShadowTextView {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
         intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
-        getContext().registerReceiver(this.mIntentReceiver, intentFilter);
+        getContext().registerReceiver(mIntentReceiver, intentFilter);
         onTimeChanged(true);
-        this.mHandler = new Handler();
+        mHandler = new Handler();
     }
 
     @Override // android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.mHandler != null) {
-            getContext().unregisterReceiver(this.mIntentReceiver);
-            this.mHandler = null;
+        if (mHandler != null) {
+            getContext().unregisterReceiver(mIntentReceiver);
+            mHandler = null;
         }
     }
 
     private void onTimeTick() {
         onTimeChanged(false);
-        if (this.mHandler != null) {
+        if (mHandler != null) {
             long uptimeMillis = SystemClock.uptimeMillis();
-            this.mHandler.postAtTime(this.mTicker, uptimeMillis + (1000 - (uptimeMillis % 1000)));
+            mHandler.postAtTime(mTicker, uptimeMillis + (1000 - (uptimeMillis % 1000)));
         }
     }
 
     @Override // android.view.View
     public void onVisibilityAggregated(boolean isVisible) {
         super.onVisibilityAggregated(isVisible);
-        if (this.mHandler != null) {
-            this.mHandler.removeCallbacks(this.mTicker);
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mTicker);
             if (isVisible) {
-                this.mTicker.run();
+                mTicker.run();
             }
         }
     }
@@ -80,14 +80,14 @@ public class IcuDateTextView extends DoubleShadowTextView {
         if (!isShown()) {
             return;
         }
-        if (this.mFormatter == null || force) {
+        if (mFormatter == null || force) {
             DateFormat format = DateFormat.getInstanceForSkeleton(getContext().getString(R.string.smartspace_icu_date_pattern), Locale.getDefault());
-            this.mFormatter = format;
+            mFormatter = format;
             format.setContext(DisplayContext.CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE);
         }
-        String format2 = this.mFormatter.format(Long.valueOf(System.currentTimeMillis()));
-        if (!Objects.equals(this.mText, format2)) {
-            this.mText = format2;
+        String format2 = mFormatter.format(Long.valueOf(System.currentTimeMillis()));
+        if (!Objects.equals(mText, format2)) {
+            mText = format2;
             setText(format2);
             setContentDescription(format2);
         }

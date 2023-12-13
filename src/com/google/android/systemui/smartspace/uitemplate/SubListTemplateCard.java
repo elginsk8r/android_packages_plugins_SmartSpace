@@ -26,13 +26,13 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
 
     public SubListTemplateCard(Context context) {
         super(context);
-        this.mListItems = new TextView[3];
+        mListItems = new TextView[3];
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void setTextColor(int i) {
         for (int i2 = 0; i2 < 3; i2++) {
-            TextView textView = this.mListItems[i2];
+            TextView textView = mListItems[i2];
             if (textView == null) {
                 Log.w("SubListTemplateCard", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i2 + 1)));
                 return;
@@ -43,22 +43,22 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
 
     public SubListTemplateCard(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mListItems = new TextView[3];
+        mListItems = new TextView[3];
     }
 
     public final void onFinishInflate() {
         super/*android.view.ViewGroup*/.onFinishInflate();
-        this.mListIconView = (ImageView) findViewById(R.id.list_icon);
+        mListIconView = (ImageView) findViewById(R.id.list_icon);
         for (int i = 0; i < 3; i++) {
-            this.mListItems[i] = (TextView) findViewById(LIST_ITEM_TEXT_VIEW_IDS[i]);
+            mListItems[i] = (TextView) findViewById(LIST_ITEM_TEXT_VIEW_IDS[i]);
         }
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mListIconView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 8);
         for (int i = 0; i < 3; i++) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mListItems[i], 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListItems[i], 8);
         }
     }
 
@@ -70,10 +70,10 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
             return false;
         }
         if (templateData.getSubListIcon() != null) {
-            BcSmartspaceTemplateDataUtils.setIcon(this.mListIconView, templateData.getSubListIcon());
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mListIconView, 0);
+            BcSmartspaceTemplateDataUtils.setIcon(mListIconView, templateData.getSubListIcon());
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 0);
         } else {
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mListIconView, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 8);
         }
         if (templateData.getSubListTexts() != null) {
             List subListTexts = templateData.getSubListTexts();
@@ -85,7 +85,7 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
                 if (i >= 3) {
                     break;
                 }
-                TextView textView = this.mListItems[i];
+                TextView textView = mListItems[i];
                 if (textView == null) {
                     Log.w("SubListTemplateCard", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i + 1)));
                     break;

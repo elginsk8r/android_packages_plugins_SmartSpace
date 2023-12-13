@@ -49,14 +49,14 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
 
     public BcSmartspaceCardDoorbell(Context context) {
         super(context);
-        this.mUriToDrawable = new HashMap();
-        this.mGifFrameDurationInMs = 200;
+        mUriToDrawable = new HashMap();
+        mGifFrameDurationInMs = 200;
     }
 
     public BcSmartspaceCardDoorbell(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mUriToDrawable = new HashMap();
-        this.mGifFrameDurationInMs = 200;
+        mUriToDrawable = new HashMap();
+        mGifFrameDurationInMs = 200;
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardGenericImage, com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -69,17 +69,17 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
         List<Uri> imageUris = getImageUris(smartspaceTarget);
         if (!imageUris.isEmpty()) {
             if (extras != null && extras.containsKey("frameDurationMs")) {
-                this.mGifFrameDurationInMs = extras.getInt("frameDurationMs");
+                mGifFrameDurationInMs = extras.getInt("frameDurationMs");
             }
             maybeResetImageView(smartspaceTarget);
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mImageView, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 0);
             loadImageUris(imageUris);
             Log.d("BcSmartspaceCardBell", "imageUri is set");
             return true;
         } else if (extras != null && extras.containsKey("imageBitmap")) {
             Bitmap bitmap = (Bitmap) extras.get("imageBitmap");
             maybeResetImageView(smartspaceTarget);
-            BcSmartspaceTemplateDataUtils.updateVisibility(this.mImageView, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 0);
             if (bitmap != null) {
                 setRoundedBitmapDrawable(bitmap);
                 Log.d("BcSmartspaceCardBell", "imageBitmap is set");
@@ -116,7 +116,7 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
 
     private void loadImageUris(List<Uri> list) {
         addFramesToAnimatedDrawable((List) list.stream().map(uri -> {
-            return computeImageUri(getContext().getApplicationContext().getContentResolver(), getResources().getDimensionPixelOffset(R.dimen.enhanced_smartspace_height), getResources().getDimension(R.dimen.enhanced_smartspace_secondary_card_corner_radius), new WeakReference(this.mImageView), new WeakReference(this.mLoadingScreenView), uri);
+            return computeImageUri(getContext().getApplicationContext().getContentResolver(), getResources().getDimensionPixelOffset(R.dimen.enhanced_smartspace_height), getResources().getDimension(R.dimen.enhanced_smartspace_secondary_card_corner_radius), new WeakReference(mImageView), new WeakReference(mLoadingScreenView), uri);
         }).filter(d -> {
             return Objects.nonNull(d);
         }).collect(Collectors.toList()));
@@ -125,14 +125,14 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
     private void addFramesToAnimatedDrawable(List<Drawable> list) {
         AnimationDrawable animationDrawable = new AnimationDrawable();
         for (Drawable drawable : list) {
-            animationDrawable.addFrame(drawable, this.mGifFrameDurationInMs);
+            animationDrawable.addFrame(drawable, mGifFrameDurationInMs);
         }
-        this.mImageView.setImageDrawable(animationDrawable);
+        mImageView.setImageDrawable(animationDrawable);
         animationDrawable.start();
     }
 
     private DrawableWithUri computeImageUri(ContentResolver contentResolver, int i, float f, WeakReference weakReference, WeakReference weakReference2, Uri uri) {
-        return (DrawableWithUri) this.mUriToDrawable.computeIfAbsent(uri, newUri -> {
+        return (DrawableWithUri) mUriToDrawable.computeIfAbsent(uri, newUri -> {
             return drawImageUri(contentResolver, i, f, weakReference, weakReference2, (Uri) newUri);
         });
     }
@@ -150,23 +150,23 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
         }
         RoundedBitmapDrawable create = RoundedBitmapDrawableFactory.create(getResources(), bm);
         create.setCornerRadius(getResources().getDimension(R.dimen.enhanced_smartspace_secondary_card_corner_radius));
-        this.mImageView.setImageDrawable(create);
+        mImageView.setImageDrawable(create);
     }
 
     public final void maybeResetImageView(SmartspaceTarget smartspaceTarget) {
-        this.mPreviousTargetId = smartspaceTarget.getSmartspaceTargetId();
-        if (!smartspaceTarget.getSmartspaceTargetId().equals(this.mPreviousTargetId)) {
-            this.mImageView.getLayoutParams().width = -2;
-            this.mImageView.setImageDrawable(null);
-            this.mUriToDrawable.clear();
+        mPreviousTargetId = smartspaceTarget.getSmartspaceTargetId();
+        if (!smartspaceTarget.getSmartspaceTargetId().equals(mPreviousTargetId)) {
+            mImageView.getLayoutParams().width = -2;
+            mImageView.setImageDrawable(null);
+            mUriToDrawable.clear();
         }
     }
 
     private void showLoadingScreen(String str, Bundle extras, int i) {
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mImageView, 8);
-        ((ConstraintLayout.LayoutParams) this.mLoadingScreenView.getLayoutParams()).dimensionRatio = str;
-        this.mLoadingScreenView.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.smartspace_button_background)));
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mLoadingScreenView, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 8);
+        ((ConstraintLayout.LayoutParams) mLoadingScreenView.getLayoutParams()).dimensionRatio = str;
+        mLoadingScreenView.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.smartspace_button_background)));
+        BcSmartspaceTemplateDataUtils.updateVisibility(mLoadingScreenView, 0);
         toggleProgressBarAndLoadingIcon(extras, i);
     }
 
@@ -174,12 +174,12 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
         boolean showProgress;
         int vis;
         if (extras.containsKey("progressBarWidth")) {
-            this.mProgressBar.getLayoutParams().width = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("progressBarWidth"));
+            mProgressBar.getLayoutParams().width = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("progressBarWidth"));
         }
         if (extras.containsKey("progressBarHeight")) {
-            this.mProgressBar.getLayoutParams().height = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("progressBarHeight"));
+            mProgressBar.getLayoutParams().height = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("progressBarHeight"));
         }
-        this.mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(getContext().getColor(R.color.smartspace_button_text)));
+        mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(getContext().getColor(R.color.smartspace_button_text)));
         if (i == 1) {
             showProgress = true;
         } else if (i == 4) {
@@ -192,41 +192,41 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
         } else {
             vis = 8;
         }
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mProgressBar, showProgress ? 0 : 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mProgressBar, showProgress ? 0 : 8);
         if (extras.containsKey("loadingIconWidth")) {
-            this.mLoadingIcon.getLayoutParams().width = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("loadingIconWidth"));
+            mLoadingIcon.getLayoutParams().width = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("loadingIconWidth"));
         }
         if (extras.containsKey("loadingIconHeight")) {
-            this.mLoadingIcon.getLayoutParams().height = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("loadingIconHeight"));
+            mLoadingIcon.getLayoutParams().height = (int) (getContext().getResources().getDisplayMetrics().density * extras.getInt("loadingIconHeight"));
         }
         if (i == 2) {
-            this.mLoadingIcon.setImageDrawable(getContext().getDrawable(R.drawable.videocam));
+            mLoadingIcon.setImageDrawable(getContext().getDrawable(R.drawable.videocam));
         } else if (i == 3) {
-            this.mLoadingIcon.setImageDrawable(getContext().getDrawable(R.drawable.videocam_off));
+            mLoadingIcon.setImageDrawable(getContext().getDrawable(R.drawable.videocam_off));
         } else if (i == 4 || extras.containsKey("loadingScreenIcon")) {
-            this.mLoadingIcon.setImageBitmap((Bitmap) extras.get("loadingScreenIcon"));
+            mLoadingIcon.setImageBitmap((Bitmap) extras.get("loadingScreenIcon"));
             if (extras.getBoolean("tintLoadingIcon", false)) {
-                this.mLoadingIcon.setColorFilter(getContext().getColor(R.color.smartspace_button_text));
+                mLoadingIcon.setColorFilter(getContext().getColor(R.color.smartspace_button_text));
             }
         }
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mLoadingIcon, vis);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mLoadingIcon, vis);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardGenericImage
     public final void onFinishInflate() {
         super.onFinishInflate();
-        this.mLoadingScreenView = (ViewGroup) findViewById(R.id.loading_screen);
-        this.mProgressBar = (ProgressBar) findViewById(R.id.indeterminateBar);
-        this.mLoadingIcon = (ImageView) findViewById(R.id.loading_screen_icon);
+        mLoadingScreenView = (ViewGroup) findViewById(R.id.loading_screen);
+        mProgressBar = (ProgressBar) findViewById(R.id.indeterminateBar);
+        mLoadingIcon = (ImageView) findViewById(R.id.loading_screen_icon);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardGenericImage, com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
         super.resetUi();
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mImageView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mLoadingScreenView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mProgressBar, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(this.mLoadingIcon, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mLoadingScreenView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mProgressBar, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mLoadingIcon, 8);
     }
 
     public static Drawable getSampleBitmapDrawable(InputStream inputStream, final int i) {
@@ -266,11 +266,11 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
 
         public DrawableWithUri(float f, int height, ContentResolver contentResolver, Uri uri, WeakReference imageViewWeakReference, WeakReference loadingScreenWeakReference) {
             super(new ColorDrawable(0), f);
-            this.mUri = uri;
-            this.mHeightInPx = height;
-            this.mContentResolver = contentResolver;
-            this.mImageViewWeakReference = imageViewWeakReference;
-            this.mLoadingScreenWeakReference = loadingScreenWeakReference;
+            mUri = uri;
+            mHeightInPx = height;
+            mContentResolver = contentResolver;
+            mImageViewWeakReference = imageViewWeakReference;
+            mLoadingScreenWeakReference = loadingScreenWeakReference;
         }
     }
 

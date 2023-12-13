@@ -25,7 +25,7 @@ public final class BcNextAlarmData {
         if (subItemInfo != null && !SmartspaceUtils.isEmpty(subItemInfo.getText())) {
             return subItemInfo.getText().getText();
         }
-        SmartspaceTarget smartspaceTarget = this.mHolidayAlarmsTarget;
+        SmartspaceTarget smartspaceTarget = mHolidayAlarmsTarget;
         if (smartspaceTarget != null && (headerAction = smartspaceTarget.getHeaderAction()) != null) {
             return headerAction.getTitle();
         }
@@ -34,7 +34,7 @@ public final class BcNextAlarmData {
 
     public void setOnClickListener(View view, TapAction tapAction, BcSmartspaceDataPlugin.SmartspaceEventNotifier smartspaceEventNotifier, int i) {
         BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo;
-        SmartspaceTarget smartspaceTarget = this.mHolidayAlarmsTarget;
+        SmartspaceTarget smartspaceTarget = mHolidayAlarmsTarget;
         if (smartspaceTarget == null) {
             BcSmartspaceCardLoggingInfo.Builder builder = new BcSmartspaceCardLoggingInfo.Builder();
             builder.mInstanceId = InstanceId.create("upcoming_alarm_card_94510_12684");
@@ -44,22 +44,22 @@ public final class BcNextAlarmData {
         } else {
             BcSmartspaceCardLoggingInfo.Builder builder2 = new BcSmartspaceCardLoggingInfo.Builder();
             builder2.mInstanceId = InstanceId.create(smartspaceTarget);
-            builder2.mFeatureType = this.mHolidayAlarmsTarget.getFeatureType();
+            builder2.mFeatureType = mHolidayAlarmsTarget.getFeatureType();
             builder2.mDisplaySurface = i;
             bcSmartspaceCardLoggingInfo = new BcSmartspaceCardLoggingInfo(builder2);
         }
         if (tapAction == null || (tapAction.getIntent() == null && tapAction.getPendingIntent() == null)) {
-            BcSmartSpaceUtil.setOnClickListener(view, this.mHolidayAlarmsTarget, SHOW_ALARMS_ACTION, smartspaceEventNotifier, "BcNextAlarmData", bcSmartspaceCardLoggingInfo, 0);
+            BcSmartSpaceUtil.setOnClickListener(view, mHolidayAlarmsTarget, SHOW_ALARMS_ACTION, smartspaceEventNotifier, "BcNextAlarmData", bcSmartspaceCardLoggingInfo, 0);
         } else {
-            BcSmartSpaceUtil.setOnClickListener(view, this.mHolidayAlarmsTarget, tapAction, smartspaceEventNotifier, "BcNextAlarmData", bcSmartspaceCardLoggingInfo, 0);
+            BcSmartSpaceUtil.setOnClickListener(view, mHolidayAlarmsTarget, tapAction, smartspaceEventNotifier, "BcNextAlarmData", bcSmartspaceCardLoggingInfo, 0);
         }
     }
 
     public String getDescription(BaseTemplateData.SubItemInfo subItemInfo) {
         CharSequence holidayAlarmText = getHolidayAlarmText(subItemInfo);
         if (!TextUtils.isEmpty(holidayAlarmText)) {
-            return this.mDescription + " · " + ((Object) holidayAlarmText);
+            return mDescription + " · " + ((Object) holidayAlarmText);
         }
-        return this.mDescription;
+        return mDescription;
     }
 }

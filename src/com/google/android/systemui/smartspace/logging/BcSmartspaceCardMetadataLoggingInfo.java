@@ -20,7 +20,7 @@ public final class BcSmartspaceCardMetadataLoggingInfo {
             return false;
         }
         BcSmartspaceCardMetadataLoggingInfo bcSmartspaceCardMetadataLoggingInfo = (BcSmartspaceCardMetadataLoggingInfo) obj;
-        if (this.mInstanceId != bcSmartspaceCardMetadataLoggingInfo.mInstanceId || this.mCardTypeId != bcSmartspaceCardMetadataLoggingInfo.mCardTypeId) {
+        if (mInstanceId != bcSmartspaceCardMetadataLoggingInfo.mInstanceId || mCardTypeId != bcSmartspaceCardMetadataLoggingInfo.mCardTypeId) {
             z = false;
         }
         return z;
@@ -28,17 +28,17 @@ public final class BcSmartspaceCardMetadataLoggingInfo {
 
     public final String toString() {
         StringBuilder m = LogBuilder.m("BcSmartspaceCardMetadataLoggingInfo{mInstanceId=");
-        m.append(this.mInstanceId);
+        m.append(mInstanceId);
         m.append(", mCardTypeId=");
-        return LogBuilder.m(m, this.mCardTypeId, '}');
+        return LogBuilder.m(m, mCardTypeId, '}');
     }
 
     public BcSmartspaceCardMetadataLoggingInfo(Builder builder) {
-        this.mInstanceId = builder.mInstanceId;
-        this.mCardTypeId = builder.mCardTypeId;
+        mInstanceId = builder.mInstanceId;
+        mCardTypeId = builder.mCardTypeId;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.mInstanceId), Integer.valueOf(this.mCardTypeId));
+        return Objects.hash(Integer.valueOf(mInstanceId), Integer.valueOf(mCardTypeId));
     }
 }

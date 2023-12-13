@@ -158,14 +158,14 @@ public final class BcSmartSpaceUtil {
         public final String tag;
 
         public SmartspaceIntentStarter(String str) {
-            this.tag = str;
+            tag = str;
         }
 
         public void startIntent(View view, Intent intent, boolean z) {
             try {
                 view.getContext().startActivity(intent);
             } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
-                Log.e(this.tag, "Cannot invoke smartspace intent", e);
+                Log.e(tag, "Cannot invoke smartspace intent", e);
             }
         }
 
@@ -173,7 +173,7 @@ public final class BcSmartSpaceUtil {
             try {
                 pendingIntent.send();
             } catch (PendingIntent.CanceledException e) {
-                Log.e(this.tag, "Cannot invoke canceled smartspace intent", e);
+                Log.e(tag, "Cannot invoke canceled smartspace intent", e);
             }
         }
     }

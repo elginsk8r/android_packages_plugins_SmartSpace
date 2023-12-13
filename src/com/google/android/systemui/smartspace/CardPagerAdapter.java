@@ -63,14 +63,14 @@ public class CardPagerAdapter extends PagerAdapter {
     public boolean mHasDifferentTargets = false;
 
     List<SmartspaceTarget> getTargets() {
-        return this.mSmartspaceTargets;
+        return mSmartspaceTargets;
     }
 
     public CardPagerAdapter(View view) {
-        this.mRoot = view;
+        mRoot = view;
         int attrColor = GraphicsUtils.getAttrColor(view.getContext(), 16842806);
-        this.mPrimaryTextColor = attrColor;
-        this.mCurrentTextColor = attrColor;
+        mPrimaryTextColor = attrColor;
+        mCurrentTextColor = attrColor;
     }
 
     public static int getBaseLegacyCardRes(int layout) {
@@ -150,8 +150,8 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     public void refreshCards() {
-        for (int i = 0; i < this.mViewHolders.size(); i++) {
-            SparseArray<ViewHolder> sparseArray = this.mViewHolders;
+        for (int i = 0; i < mViewHolders.size(); i++) {
+            SparseArray<ViewHolder> sparseArray = mViewHolders;
             ViewHolder viewHolder = sparseArray.get(sparseArray.keyAt(i));
             if (viewHolder != null) {
                 onBindViewHolder(viewHolder);
@@ -168,26 +168,26 @@ public class CardPagerAdapter extends PagerAdapter {
         BcSmartspaceCard bcSmartspaceCard = viewHolder.mLegacyCard;
         if (bcSmartspaceCard != null) {
             SmartspaceTarget smartspaceTarget = bcSmartspaceCard.mTarget;
-            if (smartspaceTarget != null && this.mEnableCardRecycling.get()) {
-                this.mRecycledLegacyCards.put(getFeatureType(smartspaceTarget), bcSmartspaceCard);
+            if (smartspaceTarget != null && mEnableCardRecycling.get()) {
+                mRecycledLegacyCards.put(getFeatureType(smartspaceTarget), bcSmartspaceCard);
             }
             viewGroup.removeView(bcSmartspaceCard);
         }
         BaseTemplateCard baseTemplateCard = viewHolder.mCard;
         if (baseTemplateCard != null) {
-            if (baseTemplateCard.mTarget != null && this.mEnableCardRecycling.get()) {
-                this.mRecycledCards.put(baseTemplateCard.mTarget.getFeatureType(), baseTemplateCard);
+            if (baseTemplateCard.mTarget != null && mEnableCardRecycling.get()) {
+                mRecycledCards.put(baseTemplateCard.mTarget.getFeatureType(), baseTemplateCard);
             }
             viewGroup.removeView(viewHolder.mCard);
         }
-        if (this.mViewHolders.get(position) == viewHolder) {
-            this.mViewHolders.remove(position);
+        if (mViewHolders.get(position) == viewHolder) {
+            mViewHolders.remove(position);
         }
     }
 
     @Override
     public int getCount() {
-        return this.mSmartspaceTargets.size();
+        return mSmartspaceTargets.size();
     }
 
     @Override
@@ -206,8 +206,8 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     public SmartspaceTarget getTargetAtPosition(int position) {
-        if (!this.mSmartspaceTargets.isEmpty() && position >= 0 && position < this.mSmartspaceTargets.size()) {
-            return this.mSmartspaceTargets.get(position);
+        if (!mSmartspaceTargets.isEmpty() && position >= 0 && position < mSmartspaceTargets.size()) {
+            return mSmartspaceTargets.get(position);
         }
         return null;
     }
@@ -220,15 +220,15 @@ public class CardPagerAdapter extends PagerAdapter {
         BaseTemplateData.SubItemInfo subItemInfo;
         int i2;
         int secondaryCardRes;
-        SmartspaceTarget smartspaceTarget = (SmartspaceTarget) this.mSmartspaceTargets.get(i);
+        SmartspaceTarget smartspaceTarget = (SmartspaceTarget) mSmartspaceTargets.get(i);
         if (smartspaceTarget.getTemplateData() != null) {
             Log.i("SsCardPagerAdapter", "Use UI template for the feature: " + smartspaceTarget.getFeatureType());
-            if (this.mEnableCardRecycling.get()) {
-                baseTemplateCard = (BaseTemplateCard) this.mRecycledCards.removeReturnOld(smartspaceTarget.getFeatureType());
+            if (mEnableCardRecycling.get()) {
+                baseTemplateCard = (BaseTemplateCard) mRecycledCards.removeReturnOld(smartspaceTarget.getFeatureType());
             } else {
                 baseTemplateCard = null;
             }
-            if (baseTemplateCard == null || (this.mEnableReducedCardRecycling.get() && !useRecycledViewForNewTarget(smartspaceTarget, baseTemplateCard.mTarget))) {
+            if (baseTemplateCard == null || (mEnableReducedCardRecycling.get() && !useRecycledViewForNewTarget(smartspaceTarget, baseTemplateCard.mTarget))) {
                 BaseTemplateData templateData = smartspaceTarget.getTemplateData();
                 if (templateData != null) {
                     subItemInfo = templateData.getPrimaryItem();
@@ -267,12 +267,12 @@ public class CardPagerAdapter extends PagerAdapter {
             viewHolder = new ViewHolder(i, null, smartspaceTarget, baseTemplateCard);
             viewGroup.addView(baseTemplateCard);
         } else {
-            if (this.mEnableCardRecycling.get()) {
-                bcSmartspaceCard = (BcSmartspaceCard) this.mRecycledLegacyCards.removeReturnOld(getFeatureType(smartspaceTarget));
+            if (mEnableCardRecycling.get()) {
+                bcSmartspaceCard = (BcSmartspaceCard) mRecycledLegacyCards.removeReturnOld(getFeatureType(smartspaceTarget));
             } else {
                 bcSmartspaceCard = null;
             }
-            if (bcSmartspaceCard == null || (this.mEnableReducedCardRecycling.get() && !useRecycledViewForNewTarget(smartspaceTarget, bcSmartspaceCard.mTarget))) {
+            if (bcSmartspaceCard == null || (mEnableReducedCardRecycling.get() && !useRecycledViewForNewTarget(smartspaceTarget, bcSmartspaceCard.mTarget))) {
                 int featureType = getFeatureType(smartspaceTarget);
                 LayoutInflater from2 = LayoutInflater.from(viewGroup.getContext());
                 BcSmartspaceCard bcSmartspaceCard2 = (BcSmartspaceCard) from2.inflate(getBaseLegacyCardRes(featureType), viewGroup, false);
@@ -300,7 +300,7 @@ public class CardPagerAdapter extends PagerAdapter {
             viewGroup.addView(bcSmartspaceCard);
         }
         onBindViewHolder(viewHolder);
-        this.mViewHolders.put(i, viewHolder);
+        mViewHolders.put(i, viewHolder);
         return viewHolder;
     }
 
@@ -330,14 +330,14 @@ public class CardPagerAdapter extends PagerAdapter {
         int i7;
         TapAction tapAction2;
         int i8;
-        SmartspaceTarget smartspaceTarget = this.mSmartspaceTargets.get(viewHolder.mPosition);
+        SmartspaceTarget smartspaceTarget = mSmartspaceTargets.get(viewHolder.mPosition);
         BcSmartspaceCardLoggingInfo.Builder builder = new BcSmartspaceCardLoggingInfo.Builder();
         builder.mInstanceId = InstanceId.create(smartspaceTarget);
         builder.mFeatureType = smartspaceTarget.getFeatureType();
-        builder.mDisplaySurface = BcSmartSpaceUtil.getLoggingDisplaySurface(this.mRoot.getContext().getPackageName(), this.mIsDreaming, this.mDozeAmount);
+        builder.mDisplaySurface = BcSmartSpaceUtil.getLoggingDisplaySurface(mRoot.getContext().getPackageName(), mIsDreaming, mDozeAmount);
         builder.mRank = viewHolder.mPosition;
-        builder.mCardinality = this.mSmartspaceTargets.size();
-        builder.mUid = BcSmartspaceCardLoggerUtil.getUid(this.mRoot.getContext().getPackageManager(), smartspaceTarget);
+        builder.mCardinality = mSmartspaceTargets.size();
+        builder.mUid = BcSmartspaceCardLoggerUtil.getUid(mRoot.getContext().getPackageManager(), smartspaceTarget);
         if (smartspaceTarget.getTemplateData() != null) {
             createSubcardLoggingInfo = BcSmartspaceCardLoggerUtil.createSubcardLoggingInfo(smartspaceTarget.getTemplateData());
         } else {
@@ -352,16 +352,16 @@ public class CardPagerAdapter extends PagerAdapter {
                 Log.w("SsCardPagerAdapter", "No ui-template card view can be binded");
                 return;
             }
-            baseTemplateCard.mIsDreaming = this.mIsDreaming;
-            baseTemplateCard.mUiSurface = this.mUiSurface;
-            if (this.mDataProvider == null) {
+            baseTemplateCard.mIsDreaming = mIsDreaming;
+            baseTemplateCard.mUiSurface = mUiSurface;
+            if (mDataProvider == null) {
                 eventNotifier = null;
             } else {
                 eventNotifier = smartspaceTargetEvent -> {
-                    this.mDataProvider.notifySmartspaceEvent(smartspaceTargetEvent);
+                    mDataProvider.notifySmartspaceEvent(smartspaceTargetEvent);
                 };
             }
-            BcNextAlarmData bcNextAlarmData2 = this.mNextAlarmData;
+            BcNextAlarmData bcNextAlarmData2 = mNextAlarmData;
             if (!smartspaceTarget.getSmartspaceTargetId().equals(baseTemplateCard.mPrevSmartspaceTargetId)) {
                 baseTemplateCard.mTarget = null;
                 baseTemplateCard.mTemplateData = null;
@@ -391,7 +391,7 @@ public class CardPagerAdapter extends PagerAdapter {
             baseTemplateCard.mTemplateData = smartspaceTarget.getTemplateData();
             baseTemplateCard.mFeatureType = smartspaceTarget.getFeatureType();
             baseTemplateCard.mLoggingInfo = bcSmartspaceCardLoggingInfo2;
-            baseTemplateCard.mShouldShowPageIndicator = this.mSmartspaceTargets.size() > 1;
+            baseTemplateCard.mShouldShowPageIndicator = mSmartspaceTargets.size() > 1;
             baseTemplateCard.mValidSecondaryCard = false;
             ViewGroup viewGroup = baseTemplateCard.mTextGroup;
             if (viewGroup != null) {
@@ -497,21 +497,21 @@ public class CardPagerAdapter extends PagerAdapter {
                 }
             }
             if (baseTemplateCard.mDndImageView != null) {
-                if (this.mDndImage == null) {
+                if (mDndImage == null) {
                     BcSmartspaceTemplateDataUtils.updateVisibility(baseTemplateCard.mDndImageView, i6);
                     BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(baseTemplateCard.mDndImageView, doubleShadowIconDrawable);
                 } else {
                     DoubleShadowIconDrawable doubleShadowIconDrawable3 = new DoubleShadowIconDrawable(baseTemplateCard.getContext());
-                    doubleShadowIconDrawable3.setIcon(this.mDndImage.mutate());
+                    doubleShadowIconDrawable3.setIcon(mDndImage.mutate());
                     baseTemplateCard.mDndImageView.setImageDrawable(doubleShadowIconDrawable3);
-                    baseTemplateCard.mDndImageView.setContentDescription(this.mDndDescription);
+                    baseTemplateCard.mDndImageView.setContentDescription(mDndDescription);
                     BcSmartspaceTemplateDataUtils.updateVisibility(baseTemplateCard.mDndImageView, 0);
                     BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(baseTemplateCard.mDndImageView, doubleShadowIconDrawable3);
                 }
                 baseTemplateCard.updateZenVisibility();
             }
-            baseTemplateCard.setPrimaryTextColor(this.mCurrentTextColor);
-            baseTemplateCard.setDozeAmount(this.mDozeAmount);
+            baseTemplateCard.setPrimaryTextColor(mCurrentTextColor);
+            baseTemplateCard.setDozeAmount(mDozeAmount);
             return;
         }
         BcSmartspaceCardLoggerUtil.tryForcePrimaryFeatureTypeAndInjectWeatherSubcard(bcSmartspaceCardLoggingInfo2, smartspaceTarget);
@@ -520,12 +520,12 @@ public class CardPagerAdapter extends PagerAdapter {
             Log.w("SsCardPagerAdapter", "No legacy card view can be binded");
             return;
         }
-        bcSmartspaceCard.mIsDreaming = this.mIsDreaming;
-        if (this.mDataProvider == null) {
+        bcSmartspaceCard.mIsDreaming = mIsDreaming;
+        if (mDataProvider == null) {
             smartspaceEventNotifier = null;
         } else {
             smartspaceEventNotifier = smartspaceTargetEvent2 -> {
-                this.mDataProvider.notifySmartspaceEvent(smartspaceTargetEvent2);
+                mDataProvider.notifySmartspaceEvent(smartspaceTargetEvent2);
             };
         }
         String smartspaceTargetId2 = smartspaceTarget.getSmartspaceTargetId();
@@ -544,7 +544,7 @@ public class CardPagerAdapter extends PagerAdapter {
         bcSmartspaceCard.mEventNotifier = smartspaceEventNotifier;
         SmartspaceAction headerAction = smartspaceTarget.getHeaderAction();
         SmartspaceAction baseAction = smartspaceTarget.getBaseAction();
-        bcSmartspaceCard.mUsePageIndicatorUi = this.mSmartspaceTargets.size() > 1;
+        bcSmartspaceCard.mUsePageIndicatorUi = mSmartspaceTargets.size() > 1;
         bcSmartspaceCard.mValidSecondaryCard = false;
         ViewGroup viewGroup4 = bcSmartspaceCard.mTextGroup;
         if (viewGroup4 != null) {
@@ -656,9 +656,9 @@ public class CardPagerAdapter extends PagerAdapter {
             }
             bcSmartspaceCard.mSecondaryCardGroup.setLayoutParams(layoutParams2);
         }
-        bcSmartspaceCard.setPrimaryTextColor(this.mCurrentTextColor);
-        bcSmartspaceCard.setDozeAmount(this.mDozeAmount);
-        Drawable drawable3 = this.mDndImage;
+        bcSmartspaceCard.setPrimaryTextColor(mCurrentTextColor);
+        bcSmartspaceCard.setDozeAmount(mDozeAmount);
+        Drawable drawable3 = mDndImage;
         ImageView imageView4 = bcSmartspaceCard.mDndImageView;
         if (imageView4 != null) {
             if (drawable3 == null) {
@@ -667,13 +667,13 @@ public class CardPagerAdapter extends PagerAdapter {
             } else {
                 bcSmartspaceCard.mDndIconDrawable.setIcon(drawable3.mutate());
                 bcSmartspaceCard.mDndImageView.setImageDrawable(bcSmartspaceCard.mDndIconDrawable);
-                bcSmartspaceCard.mDndImageView.setContentDescription(this.mDndDescription);
+                bcSmartspaceCard.mDndImageView.setContentDescription(mDndDescription);
                 BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(bcSmartspaceCard.mDndImageView, bcSmartspaceCard.mDndIconDrawable);
                 BcSmartspaceTemplateDataUtils.updateVisibility(bcSmartspaceCard.mDndImageView, 0);
             }
             bcSmartspaceCard.updateZenVisibility();
         }
-        BcNextAlarmData bcNextAlarmData3 = this.mNextAlarmData;
+        BcNextAlarmData bcNextAlarmData3 = mNextAlarmData;
         ImageView imageView5 = bcSmartspaceCard.mNextAlarmImageView;
         if (imageView5 != null && bcSmartspaceCard.mNextAlarmTextView != null) {
             Drawable drawable4 = bcNextAlarmData3.mImage;
@@ -698,22 +698,22 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     public void setDataProvider(BcSmartspaceDataPlugin plugin) {
-        this.mDataProvider = plugin;
+        mDataProvider = plugin;
     }
 
     public void setPrimaryTextColor(int i) {
-        this.mPrimaryTextColor = i;
-        setDozeAmount(this.mDozeAmount);
+        mPrimaryTextColor = i;
+        setDozeAmount(mDozeAmount);
     }
 
     public void setDnd(Drawable drawable, String str) {
-        this.mDndImage = drawable;
-        this.mDndDescription = str;
+        mDndImage = drawable;
+        mDndDescription = str;
         refreshCards();
     }
 
     public void setNextAlarm(Drawable drawable, String str) {
-        BcNextAlarmData bcNextAlarmData = this.mNextAlarmData;
+        BcNextAlarmData bcNextAlarmData = mNextAlarmData;
         bcNextAlarmData.mImage = drawable;
         if (drawable != null) {
             drawable.mutate();
@@ -723,31 +723,31 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     public void setMediaTarget(SmartspaceTarget smartspaceTarget) {
-        this.mMediaTargets.clear();
+        mMediaTargets.clear();
         if (smartspaceTarget != null) {
-            this.mMediaTargets.add(smartspaceTarget);
+            mMediaTargets.add(smartspaceTarget);
         }
         updateTargetVisibility();
     }
 
     public void setDozeAmount(float f) {
-        this.mCurrentTextColor = ColorUtils.blendARGB(this.mPrimaryTextColor, this.mDozeColor, f);
-        this.mLastDozeAmount = this.mDozeAmount;
-        this.mDozeAmount = f;
+        mCurrentTextColor = ColorUtils.blendARGB(mPrimaryTextColor, mDozeColor, f);
+        mLastDozeAmount = mDozeAmount;
+        mDozeAmount = f;
         updateTargetVisibility();
-        for (int i = 0; i < this.mViewHolders.size(); i++) {
-            SparseArray<ViewHolder> sparseArray = this.mViewHolders;
+        for (int i = 0; i < mViewHolders.size(); i++) {
+            SparseArray<ViewHolder> sparseArray = mViewHolders;
             ViewHolder viewHolder = sparseArray.get(sparseArray.keyAt(i));
             if (viewHolder != null) {
                 BcSmartspaceCard bcSmartspaceCard = viewHolder.mLegacyCard;
                 if (bcSmartspaceCard != null) {
-                    bcSmartspaceCard.setPrimaryTextColor(this.mCurrentTextColor);
-                    bcSmartspaceCard.setDozeAmount(this.mDozeAmount);
+                    bcSmartspaceCard.setPrimaryTextColor(mCurrentTextColor);
+                    bcSmartspaceCard.setDozeAmount(mDozeAmount);
                 }
                 BaseTemplateCard baseTemplateCard = viewHolder.mCard;
                 if (baseTemplateCard != null) {
-                    baseTemplateCard.setPrimaryTextColor(this.mCurrentTextColor);
-                    baseTemplateCard.setDozeAmount(this.mDozeAmount);
+                    baseTemplateCard.setPrimaryTextColor(mCurrentTextColor);
+                    baseTemplateCard.setDozeAmount(mDozeAmount);
                 }
             }
         }
@@ -756,23 +756,23 @@ public class CardPagerAdapter extends PagerAdapter {
     public void updateTargetVisibility() {
         ArrayList<SmartspaceTarget> targets;
         ArrayList<SmartspaceTarget> targets2;
-        if (Float.compare(this.mDozeAmount, 1.0f) == 0) {
-            if (isMediaPreferred(this.mAODTargets)) {
-                targets2 = this.mMediaTargets;
+        if (Float.compare(mDozeAmount, 1.0f) == 0) {
+            if (isMediaPreferred(mAODTargets)) {
+                targets2 = mMediaTargets;
             } else {
-                targets2 = this.mAODTargets;
+                targets2 = mAODTargets;
             }
-            this.mSmartspaceTargets = targets2;
+            mSmartspaceTargets = targets2;
             notifyDataSetChanged();
             return;
         }
-        if (isMediaPreferred(this.mLockscreenTargets) && this.mKeyguardBypassEnabled) {
-            targets = this.mMediaTargets;
+        if (isMediaPreferred(mLockscreenTargets) && mKeyguardBypassEnabled) {
+            targets = mMediaTargets;
         } else {
-            targets = this.mLockscreenTargets;
+            targets = mLockscreenTargets;
         }
-        this.mSmartspaceTargets = targets;
-        if (Float.compare(this.mLastDozeAmount, 0.0f) == 0 || Float.compare(this.mLastDozeAmount, 1.0f) == 0 || Float.compare(this.mDozeAmount, 0.0f) == 0) {
+        mSmartspaceTargets = targets;
+        if (Float.compare(mLastDozeAmount, 0.0f) == 0 || Float.compare(mLastDozeAmount, 1.0f) == 0 || Float.compare(mDozeAmount, 0.0f) == 0) {
             notifyDataSetChanged();
         }
     }
@@ -791,12 +791,12 @@ public class CardPagerAdapter extends PagerAdapter {
 
     public void addDefaultDateCardIfEmpty(ArrayList<SmartspaceTarget> targets) {
         if (targets.isEmpty()) {
-            targets.add(new SmartspaceTarget.Builder("date_card_794317_92634", new ComponentName(this.mRoot.getContext(), CardPagerAdapter.class), this.mRoot.getContext().getUser()).setFeatureType(1).build());
+            targets.add(new SmartspaceTarget.Builder("date_card_794317_92634", new ComponentName(mRoot.getContext(), CardPagerAdapter.class), mRoot.getContext().getUser()).setFeatureType(1).build());
         }
     }
 
     public boolean isMediaPreferred(ArrayList<SmartspaceTarget> targets) {
-        return targets.size() == 1 && targets.get(0).getFeatureType() == 1 && !this.mMediaTargets.isEmpty();
+        return targets.size() == 1 && targets.get(0).getFeatureType() == 1 && !mMediaTargets.isEmpty();
     }
 
     public static class ViewHolder {
@@ -806,10 +806,10 @@ public class CardPagerAdapter extends PagerAdapter {
         public SmartspaceTarget mTarget;
 
         public ViewHolder(int position, BcSmartspaceCard legacyCard, SmartspaceTarget target, BaseTemplateCard card) {
-            this.mPosition = position;
-            this.mLegacyCard = legacyCard;
-            this.mTarget = target;
-            this.mCard = card;
+            mPosition = position;
+            mLegacyCard = legacyCard;
+            mTarget = target;
+            mCard = card;
         }
     }
 }

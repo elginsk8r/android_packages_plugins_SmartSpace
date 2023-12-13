@@ -17,12 +17,12 @@ public abstract class BcSmartspaceCardSecondary extends ConstraintLayout {
 
     public BcSmartspaceCardSecondary(Context context) {
         super(context);
-        this.mPrevSmartspaceTargetId = "";
+        mPrevSmartspaceTargetId = "";
     }
 
     public BcSmartspaceCardSecondary(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mPrevSmartspaceTargetId = "";
+        mPrevSmartspaceTargetId = "";
     }
 
     public void resetUi() {

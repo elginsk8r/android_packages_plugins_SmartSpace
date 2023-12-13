@@ -33,16 +33,16 @@ public class BcSmartspaceCardGenericImage extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public void resetUi() {
-        this.mImageView.setImageBitmap(null);
+        mImageView.setImageBitmap(null);
     }
 
     public void setImageBitmap(Bitmap bitmap) {
-        this.mImageView.setImageBitmap(bitmap);
+        mImageView.setImageBitmap(bitmap);
     }
 
     public void onFinishInflate() {
         super.onFinishInflate();
-        this.mImageView = (ImageView) findViewById(R.id.image_view);
+        mImageView = (ImageView) findViewById(R.id.image_view);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -58,20 +58,20 @@ public class BcSmartspaceCardGenericImage extends BcSmartspaceCardSecondary {
             if (extras.containsKey("imageScaleType")) {
                 String string = extras.getString("imageScaleType");
                 try {
-                    this.mImageView.setScaleType(ImageView.ScaleType.valueOf(string));
+                    mImageView.setScaleType(ImageView.ScaleType.valueOf(string));
                 } catch (IllegalArgumentException e) {
                     Log.e("SmartspaceGenericImg", "Invalid imageScaleType value: " + string);
                 }
             }
             String dimensionRatio = BcSmartSpaceUtil.getDimensionRatio(extras);
             if (dimensionRatio != null) {
-                ((ConstraintLayout.LayoutParams) this.mImageView.getLayoutParams()).dimensionRatio = dimensionRatio;
+                ((ConstraintLayout.LayoutParams) mImageView.getLayoutParams()).dimensionRatio = dimensionRatio;
             }
             if (extras.containsKey("imageLayoutWidth")) {
-                ((ViewGroup.MarginLayoutParams) this.mImageView.getLayoutParams()).width = extras.getInt("imageLayoutWidth");
+                ((ViewGroup.MarginLayoutParams) mImageView.getLayoutParams()).width = extras.getInt("imageLayoutWidth");
             }
             if (extras.containsKey("imageLayoutHeight")) {
-                ((ViewGroup.MarginLayoutParams) this.mImageView.getLayoutParams()).height = extras.getInt("imageLayoutHeight");
+                ((ViewGroup.MarginLayoutParams) mImageView.getLayoutParams()).height = extras.getInt("imageLayoutHeight");
             }
             setImageBitmap((Bitmap) extras.get("imageBitmap"));
             return true;

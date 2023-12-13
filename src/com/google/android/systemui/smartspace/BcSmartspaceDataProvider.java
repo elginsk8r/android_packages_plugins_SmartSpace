@@ -26,50 +26,50 @@ public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
     public View.OnAttachStateChangeListener mStateChangeListener = new View.OnAttachStateChangeListener() { // from class: com.google.android.systemui.smartspace.BcSmartspaceDataProvider.1
         @Override // android.view.View.OnAttachStateChangeListener
         public void onViewAttachedToWindow(View view) {
-            BcSmartspaceDataProvider.this.mViews.add(view);
-            BcSmartspaceDataProvider.this.mAttachListeners.forEach(listener -> {
+            BcSmartspaceDataProvider.mViews.add(view);
+            BcSmartspaceDataProvider.mAttachListeners.forEach(listener -> {
                 listener.onViewAttachedToWindow(view);
             });
         }
 
         @Override // android.view.View.OnAttachStateChangeListener
         public void onViewDetachedFromWindow(View view) {
-            BcSmartspaceDataProvider.this.mViews.remove(view);
+            BcSmartspaceDataProvider.mViews.remove(view);
             view.removeOnAttachStateChangeListener(this);
-            BcSmartspaceDataProvider.this.mAttachListeners.forEach(listener -> {
+            BcSmartspaceDataProvider.mAttachListeners.forEach(listener -> {
                 listener.onViewDetachedFromWindow(view);
             });
         }
     };
 
     public void registerListener(BcSmartspaceDataPlugin.SmartspaceTargetListener listener) {
-        this.mSmartspaceTargetListeners.add(listener);
-        listener.onSmartspaceTargetsUpdated(this.mSmartspaceTargets);
+        mSmartspaceTargetListeners.add(listener);
+        listener.onSmartspaceTargetsUpdated(mSmartspaceTargets);
     }
 
     public void unregisterListener(BcSmartspaceDataPlugin.SmartspaceTargetListener listener) {
-        this.mSmartspaceTargetListeners.remove(listener);
+        mSmartspaceTargetListeners.remove(listener);
     }
 
     public void registerSmartspaceEventNotifier(BcSmartspaceDataPlugin.SmartspaceEventNotifier notifier) {
-        this.mEventNotifier = notifier;
+        mEventNotifier = notifier;
     }
 
     public void notifySmartspaceEvent(SmartspaceTargetEvent event) {
-        if (this.mEventNotifier != null) {
-            this.mEventNotifier.notifySmartspaceEvent(event);
+        if (mEventNotifier != null) {
+            mEventNotifier.notifySmartspaceEvent(event);
         }
     }
 
     public BcSmartspaceDataPlugin.SmartspaceView getView(ViewGroup parent) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.smartspace_enhanced, parent, false);
-        inflate.addOnAttachStateChangeListener(this.mStateChangeListener);
+        inflate.addOnAttachStateChangeListener(mStateChangeListener);
         return (BcSmartspaceDataPlugin.SmartspaceView) inflate;
     }
 
     public void addOnAttachStateChangeListener(View.OnAttachStateChangeListener listener) {
-        this.mAttachListeners.add(listener);
-        HashSet<View> hashSet = this.mViews;
+        mAttachListeners.add(listener);
+        HashSet<View> hashSet = mViews;
         Objects.requireNonNull(listener);
         hashSet.forEach(v -> mStateChangeListener.onViewAttachedToWindow(v));
     }
@@ -80,14 +80,14 @@ public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
             Log.d("BcSmartspaceDataPlugin", "    targets.size() = " + targets.size());
             Log.d("BcSmartspaceDataPlugin", "    targets = " + targets);
         }
-        this.mSmartspaceTargets.clear();
+        mSmartspaceTargets.clear();
         for (SmartspaceTarget smartspaceTarget : targets) {
             if (smartspaceTarget.getFeatureType() != 15) {
-                this.mSmartspaceTargets.add(smartspaceTarget);
+                mSmartspaceTargets.add(smartspaceTarget);
             }
         }
-        this.mSmartspaceTargetListeners.forEach(listener -> {
-            listener.onSmartspaceTargetsUpdated(this.mSmartspaceTargets);
+        mSmartspaceTargetListeners.forEach(listener -> {
+            listener.onSmartspaceTargetsUpdated(mSmartspaceTargets);
         });
     }
 }

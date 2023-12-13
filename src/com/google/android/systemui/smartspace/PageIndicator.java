@@ -18,30 +18,30 @@ public class PageIndicator extends LinearLayout {
 
     public PageIndicator(Context context) {
         super(context);
-        this.mPrimaryColor = getAttrColor(getContext(), 16842806);
-        this.mCurrentPageIndex = -1;
-        this.mNumPages = -1;
+        mPrimaryColor = getAttrColor(getContext(), 16842806);
+        mCurrentPageIndex = -1;
+        mNumPages = -1;
     }
 
     public PageIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mPrimaryColor = getAttrColor(getContext(), 16842806);
-        this.mCurrentPageIndex = -1;
-        this.mNumPages = -1;
+        mPrimaryColor = getAttrColor(getContext(), 16842806);
+        mCurrentPageIndex = -1;
+        mNumPages = -1;
     }
 
     public PageIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.mPrimaryColor = getAttrColor(getContext(), 16842806);
-        this.mCurrentPageIndex = -1;
-        this.mNumPages = -1;
+        mPrimaryColor = getAttrColor(getContext(), 16842806);
+        mCurrentPageIndex = -1;
+        mNumPages = -1;
     }
 
     public PageIndicator(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        this.mPrimaryColor = getAttrColor(getContext(), 16842806);
-        this.mCurrentPageIndex = -1;
-        this.mNumPages = -1;
+        mPrimaryColor = getAttrColor(getContext(), 16842806);
+        mCurrentPageIndex = -1;
+        mNumPages = -1;
     }
 
     public static int getAttrColor(Context context, int attr) {
@@ -61,38 +61,38 @@ public class PageIndicator extends LinearLayout {
             return;
         }
         BcSmartspaceTemplateDataUtils.updateVisibility(this, 0);
-        if (pages != this.mNumPages) {
-            this.mNumPages = pages;
+        if (pages != mNumPages) {
+            mNumPages = pages;
             initializePageIndicators();
         }
     }
 
     public void setPrimaryColor(int color) {
-        this.mPrimaryColor = color;
+        mPrimaryColor = color;
         for (int i = 0; i < getChildCount(); i++) {
-            ((ImageView) getChildAt(i)).getDrawable().setTint(this.mPrimaryColor);
+            ((ImageView) getChildAt(i)).getDrawable().setTint(mPrimaryColor);
         }
     }
 
     public void setPageOffset(int position, float positionOffset) {
         int i4 = Float.compare(positionOffset, 0.0f);
-        if ((i4 != 0 || position != this.mCurrentPageIndex) && position >= 0 && position < getChildCount() - 1) {
+        if ((i4 != 0 || position != mCurrentPageIndex) && position >= 0 && position < getChildCount() - 1) {
             ImageView imageView = (ImageView) getChildAt(position);
             int childIndex = position + 1;
             ImageView imageView2 = (ImageView) getChildAt(childIndex);
             if (imageView != null && imageView2 != null) {
                 if (i4 == 0 || positionOffset >= 0.99f) {
-                    if (this.mCurrentPageIndex >= 0 && this.mCurrentPageIndex < getChildCount()) {
-                        getChildAt(this.mCurrentPageIndex).setAlpha(0.4f);
+                    if (mCurrentPageIndex >= 0 && mCurrentPageIndex < getChildCount()) {
+                        getChildAt(mCurrentPageIndex).setAlpha(0.4f);
                     }
-                    this.mCurrentPageIndex = i4 == 0 ? position : childIndex;
+                    mCurrentPageIndex = i4 == 0 ? position : childIndex;
                 }
                 imageView.setAlpha(((1.0f - positionOffset) * 0.6f) + 0.4f);
                 imageView2.setAlpha((0.6f * positionOffset) + 0.4f);
                 if (positionOffset >= 0.5d) {
                     childIndex = position + 2;
                 }
-                Object[] offset = {Integer.valueOf(childIndex), Integer.valueOf(this.mNumPages)};
+                Object[] offset = {Integer.valueOf(childIndex), Integer.valueOf(mNumPages)};
                 setContentDescription(getContext().getString(R.string.accessibility_smartspace_page, offset));
             }
         }
@@ -100,13 +100,13 @@ public class PageIndicator extends LinearLayout {
 
     private void initializePageIndicators() {
         LinearLayout.LayoutParams lp;
-        int childCount = getChildCount() - this.mNumPages;
+        int childCount = getChildCount() - mNumPages;
         for (int i = 0; i < childCount; i++) {
             removeViewAt(0);
         }
         int dimensionPixelSize = getContext().getResources().getDimensionPixelSize(R.dimen.page_indicator_dot_margin);
         int i2 = 0;
-        while (i2 < this.mNumPages) {
+        while (i2 < mNumPages) {
             ImageView imageView = i2 < getChildCount() ? (ImageView) getChildAt(i2) : new ImageView(getContext());
             if (i2 < getChildCount()) {
                 lp = (LinearLayout.LayoutParams) imageView.getLayoutParams();
@@ -118,7 +118,7 @@ public class PageIndicator extends LinearLayout {
             } else {
                 lp.setMarginStart(dimensionPixelSize);
             }
-            if (i2 == this.mNumPages - 1) {
+            if (i2 == mNumPages - 1) {
                 lp.setMarginEnd(0);
             } else {
                 lp.setMarginEnd(dimensionPixelSize);
@@ -127,22 +127,22 @@ public class PageIndicator extends LinearLayout {
                 imageView.setLayoutParams(lp);
             } else {
                 Drawable drawable = getContext().getResources().getDrawable(R.drawable.page_indicator_dot, getContext().getTheme());
-                drawable.setTint(this.mPrimaryColor);
+                drawable.setTint(mPrimaryColor);
                 imageView.setImageDrawable(drawable);
                 addView(imageView, lp);
             }
-            int index = this.mCurrentPageIndex;
+            int index = mCurrentPageIndex;
             if (index < 0) {
-                this.mCurrentPageIndex = 0;
+                mCurrentPageIndex = 0;
             } else {
-                int numPages = this.mNumPages;
+                int numPages = mNumPages;
                 if (index >= numPages) {
-                    this.mCurrentPageIndex = numPages - 1;
+                    mCurrentPageIndex = numPages - 1;
                 }
             }
-            imageView.setAlpha(i2 == this.mCurrentPageIndex ? 1.0f : 0.4f);
+            imageView.setAlpha(i2 == mCurrentPageIndex ? 1.0f : 0.4f);
             i2++;
         }
-        setContentDescription(getContext().getString(R.string.accessibility_smartspace_page, 1, Integer.valueOf(this.mNumPages)));
+        setContentDescription(getContext().getString(R.string.accessibility_smartspace_page, 1, Integer.valueOf(mNumPages)));
     }
 }
