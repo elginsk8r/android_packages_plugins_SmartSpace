@@ -3,6 +3,8 @@ package com.google.android.systemui.smartspace;
 import android.provider.DeviceConfig;
 
 public final class LazyServerFlagLoader {
+    private static final String TAG = "LazyServerFlagLoader";
+
     public final String mPropertyKey;
     public Boolean mValue = null;
 

@@ -17,6 +17,8 @@ import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public class BcSmartspaceCardGenericImage extends BcSmartspaceCardSecondary {
+    private static final String TAG = "BcSmartspaceCardGenericImage";
+
     public ImageView mImageView;
 
     public BcSmartspaceCardGenericImage(Context context) {

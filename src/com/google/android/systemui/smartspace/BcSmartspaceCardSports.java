@@ -15,6 +15,8 @@ import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
+    private static final String TAG = "BcSmartspaceCardSports";
+
     public ImageView mFirstCompetitorLogo;
     public TextView mFirstCompetitorScore;
     public ImageView mSecondCompetitorLogo;
@@ -70,7 +72,7 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         if (extras.containsKey("matchTimeSummary")) {
             String string = extras.getString("matchTimeSummary");
             if (mSummaryView == null) {
-                Log.w("BcSmartspaceCardSports", "No match time summary view to update");
+                Log.w(TAG, "No match time summary view to update");
             } else {
                 BcSmartspaceTemplateDataUtils.updateVisibility(mSummaryView, 0);
                 mSummaryView.setText(string);
@@ -82,7 +84,7 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         if (extras.containsKey("firstCompetitorScore")) {
             String string2 = extras.getString("firstCompetitorScore");
             if (mFirstCompetitorScore == null) {
-                Log.w("BcSmartspaceCardSports", "No first competitor logo view to update");
+                Log.w(TAG, "No first competitor logo view to update");
             } else {
                 BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorScore, 0);
                 mFirstCompetitorScore.setText(string2);
@@ -92,7 +94,7 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         if (extras.containsKey("secondCompetitorScore")) {
             String string3 = extras.getString("secondCompetitorScore");
             if (mSecondCompetitorScore == null) {
-                Log.w("BcSmartspaceCardSports", "No second competitor logo view to update");
+                Log.w(TAG, "No second competitor logo view to update");
             } else {
                 BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorScore, 0);
                 mSecondCompetitorScore.setText(string3);
@@ -102,7 +104,7 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         if (extras.containsKey("firstCompetitorLogo")) {
             Bitmap bitmap = (Bitmap) extras.get("firstCompetitorLogo");
             if (mFirstCompetitorLogo == null) {
-                Log.w("BcSmartspaceCardSports", "No first competitor logo view to update");
+                Log.w(TAG, "No first competitor logo view to update");
             } else {
                 BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorLogo, 0);
                 mFirstCompetitorLogo.setImageBitmap(bitmap);
@@ -112,7 +114,7 @@ public class BcSmartspaceCardSports extends BcSmartspaceCardSecondary {
         if (extras.containsKey("secondCompetitorLogo")) {
             Bitmap bitmap2 = (Bitmap) extras.get("secondCompetitorLogo");
             if (mSecondCompetitorLogo == null) {
-                Log.w("BcSmartspaceCardSports", "No second competitor logo view to update");
+                Log.w(TAG, "No second competitor logo view to update");
                 return true;
             }
             BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorLogo, 0);

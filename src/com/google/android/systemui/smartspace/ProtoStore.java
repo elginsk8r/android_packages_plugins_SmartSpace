@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class ProtoStore {
+    private static final String TAG = "ProtoStore";
+
     public final Context mContext;
 
     public ProtoStore(Context context) {
@@ -24,16 +26,16 @@ public class ProtoStore {
             if (cardWrapper != null) {
                 openFileOutput.write(MessageNano.toByteArray(cardWrapper));
             } else {
-                Log.d("ProtoStore", "deleting " + str);
+                Log.d(TAG, "deleting " + str);
                 mContext.deleteFile(str);
             }
             if (openFileOutput != null) {
                 openFileOutput.close();
             }
         } catch (FileNotFoundException e) {
-            Log.d("ProtoStore", "file does not exist");
+            Log.d(TAG, "file does not exist");
         } catch (Exception ex) {
-            Log.e("ProtoStore", "unable to write file", ex);
+            Log.e(TAG, "unable to write file", ex);
         }
     }
 
@@ -48,10 +50,10 @@ public class ProtoStore {
             fileInputStream.close();
             return true;
         } catch (FileNotFoundException e) {
-            Log.d("ProtoStore", "no cached data");
+            Log.d(TAG, "no cached data");
             return false;
         } catch (Exception ex) {
-            Log.e("ProtoStore", "unable to load data", ex);
+            Log.e(TAG, "unable to load data", ex);
             return false;
         }
     }

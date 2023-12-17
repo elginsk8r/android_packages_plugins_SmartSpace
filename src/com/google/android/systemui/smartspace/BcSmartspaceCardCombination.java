@@ -20,6 +20,8 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInf
 import java.util.List;
 
 public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
+    private static final String TAG = "BcSmartspaceCardCombination";
+
     public ConstraintLayout mFirstSubCard;
     public ConstraintLayout mSecondSubCard;
 
@@ -33,13 +35,13 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
         TextView textView = (TextView) constraintLayout.findViewById(R.id.sub_card_text);
         ImageView imageView = (ImageView) constraintLayout.findViewById(R.id.sub_card_icon);
         if (textView == null) {
-            Log.w("BcSmartspaceCardCombination", "No sub-card text field to update");
+            Log.w(TAG, "No sub-card text field to update");
             return false;
         } else if (imageView == null) {
-            Log.w("BcSmartspaceCardCombination", "No sub-card image field to update");
+            Log.w(TAG, "No sub-card image field to update");
             return false;
         } else {
-            BcSmartSpaceUtil.setOnClickListener(constraintLayout, smartspaceTarget, smartspaceAction, smartspaceEventNotifier, "BcSmartspaceCardCombination", bcSmartspaceCardLoggingInfo, 0);
+            BcSmartSpaceUtil.setOnClickListener(constraintLayout, smartspaceTarget, smartspaceAction, smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo, 0);
             Drawable iconDrawable = BcSmartSpaceUtil.getIconDrawable(getContext(), smartspaceAction.getIcon());
             boolean z2 = true;
             if (iconDrawable == null) {

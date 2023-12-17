@@ -20,6 +20,8 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInf
 import java.util.List;
 
 public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
+    private static final String TAG = "CombinedCardsTemplateCard";
+
     public ConstraintLayout mFirstSubCard;
     public ConstraintLayout mSecondSubCard;
 
@@ -73,20 +75,20 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
             }
             return true;
         }
-        Log.w("CombinedCardsTemplateCard", "TemplateData is null or empty");
+        Log.w(TAG, "TemplateData is null or empty");
         return false;
     }
 
     public final boolean setupSubCard(ConstraintLayout constraintLayout, BaseTemplateData baseTemplateData, SmartspaceTarget smartspaceTarget, BcSmartspaceDataPlugin.SmartspaceEventNotifier smartspaceEventNotifier, BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo) {
         if (baseTemplateData == null) {
             BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 8);
-            Log.w("CombinedCardsTemplateCard", "Sub-card templateData is null or empty");
+            Log.w(TAG, "Sub-card templateData is null or empty");
             return false;
         }
         int secondaryCardRes = BcSmartspaceTemplateDataUtils.getSecondaryCardRes(baseTemplateData.getTemplateType());
         if (secondaryCardRes == 0) {
             BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 8);
-            Log.w("CombinedCardsTemplateCard", "Combined sub-card res is null. Cannot set it up");
+            Log.w(TAG, "Combined sub-card res is null. Cannot set it up");
             return false;
         }
         BcSmartspaceCardSecondary r0 = (BcSmartspaceCardSecondary) LayoutInflater.from(constraintLayout.getContext()).inflate(secondaryCardRes, (ViewGroup) constraintLayout, false);

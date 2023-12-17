@@ -35,6 +35,8 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceSubcardLogging
 import java.util.List;
 
 public class BaseTemplateCard extends ConstraintLayout {
+    private static final String TAG = "BaseTemplateCard";
+
     public IcuDateTextView mDateView;
     public ImageView mDndImageView;
     public float mDozeAmount;

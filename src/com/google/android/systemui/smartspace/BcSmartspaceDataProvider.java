@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
+    private static final String TAG = "BcSmartspaceDataProvider";
+
     public static final boolean DEBUG = Log.isLoggable("BcSmartspaceDataPlugin", 3);
     public final HashSet<BcSmartspaceDataPlugin.SmartspaceTargetListener> mSmartspaceTargetListeners = new HashSet<>();
     public final ArrayList<SmartspaceTarget> mSmartspaceTargets = new ArrayList<>();

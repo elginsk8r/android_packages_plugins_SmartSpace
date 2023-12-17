@@ -40,6 +40,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
+    private static final String TAG = "BcSmartspaceCardBell";
+
     public int mGifFrameDurationInMs;
     public ImageView mLoadingIcon;
     public ViewGroup mLoadingScreenView;
@@ -74,7 +76,7 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
             maybeResetImageView(smartspaceTarget);
             BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 0);
             loadImageUris(imageUris);
-            Log.d("BcSmartspaceCardBell", "imageUri is set");
+            Log.d(TAG, "imageUri is set");
             return true;
         } else if (extras != null && extras.containsKey("imageBitmap")) {
             Bitmap bitmap = (Bitmap) extras.get("imageBitmap");
@@ -82,7 +84,7 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
             BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 0);
             if (bitmap != null) {
                 setRoundedBitmapDrawable(bitmap);
-                Log.d("BcSmartspaceCardBell", "imageBitmap is set");
+                Log.d(TAG, "imageBitmap is set");
                 return true;
             }
             return true;
@@ -251,7 +253,7 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
                         }
                     });
         } catch (IOException e) {
-            Log.e("BcSmartspaceCardBell", "Unable to decode stream: " + e);
+            Log.e(TAG, "Unable to decode stream: " + e);
             return null;
         }
     }
@@ -282,7 +284,7 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
                 try {
                     drawableWithUri.mDrawable = BcSmartspaceCardDoorbell.getSampleBitmapDrawable(drawableWithUri.mContentResolver.openInputStream(drawableWithUri.mUri), drawableWithUri.mHeightInPx);
                 } catch (Exception e) {
-                    Log.w("BcSmartspaceCardBell", "open uri:" + drawableWithUri.mUri + " got exception:" + e);
+                    Log.w(TAG, "open uri:" + drawableWithUri.mUri + " got exception:" + e);
                 }
                 return drawableWithUri;
             }
@@ -297,7 +299,7 @@ public class BcSmartspaceCardDoorbell extends BcSmartspaceCardGenericImage {
                     ImageView imageView = drawableWithUri.mImageViewWeakReference.get();
                     int intrinsicWidth = drawableWithUri.mDrawable.getIntrinsicWidth();
                     if (imageView.getLayoutParams().width != intrinsicWidth) {
-                        Log.d("BcSmartspaceCardBell", "imageView requestLayout " + drawableWithUri.mUri);
+                        Log.d(TAG, "imageView requestLayout " + drawableWithUri.mUri);
                         imageView.getLayoutParams().width = intrinsicWidth;
                         imageView.requestLayout();
                     }

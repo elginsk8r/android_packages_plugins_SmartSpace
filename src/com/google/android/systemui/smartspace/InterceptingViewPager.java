@@ -8,6 +8,8 @@ import android.view.ViewConfiguration;
 import androidx.viewpager.widget.ViewPager;
 
 public class InterceptingViewPager extends ViewPager {
+    private static final String TAG = "InterceptingViewPager";
+
     public boolean mHasPerformedLongPress;
     public boolean mHasPostedLongPress;
     public final Runnable mLongPressCallback;

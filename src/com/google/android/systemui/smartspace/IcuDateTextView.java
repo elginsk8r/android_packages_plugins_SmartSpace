@@ -16,6 +16,8 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class IcuDateTextView extends DoubleShadowTextView {
+    private static final String TAG = "IcuDateTextView";
+
     public DateFormat mFormatter;
     public Handler mHandler;
     public final BroadcastReceiver mIntentReceiver;

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.android.systemui.bcsmartspace.R;
 
 public final class BcSmartspaceTemplateDataUtils {
+    private static final String TAG = "BcSmartspaceTemplateDataUtils";
+
     public static int getSecondaryCardRes(int i) {
         switch (i) {
             case 2:
@@ -57,11 +59,11 @@ public final class BcSmartspaceTemplateDataUtils {
 
     public static void setIcon(ImageView imageView, Icon icon) {
         if (imageView == null) {
-            Log.w("BcSmartspaceTemplateDataUtils", "Cannot set. The image view is null");
+            Log.w(TAG, "Cannot set. The image view is null");
             return;
         }
         if (icon == null) {
-            Log.w("BcSmartspaceTemplateDataUtils", "Cannot set. The given icon is null");
+            Log.w(TAG, "Cannot set. The given icon is null");
             updateVisibility(imageView, 8);
         }
         imageView.setImageIcon(icon.getIcon());
@@ -72,11 +74,11 @@ public final class BcSmartspaceTemplateDataUtils {
 
     public static void setText(TextView textView, Text text) {
         if (textView == null) {
-            Log.w("BcSmartspaceTemplateDataUtils", "Cannot set. The text view is null");
+            Log.w(TAG, "Cannot set. The text view is null");
             return;
         }
         if (SmartspaceUtils.isEmpty(text)) {
-            Log.w("BcSmartspaceTemplateDataUtils", "Cannot set. The given text is empty");
+            Log.w(TAG, "Cannot set. The given text is empty");
             updateVisibility(textView, 8);
         }
         textView.setText(text.getText());

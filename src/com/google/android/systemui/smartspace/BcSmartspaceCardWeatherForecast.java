@@ -20,6 +20,7 @@ import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
+    private static final String TAG = "BcSmartspaceCardWeatherForecast";
 
     public interface ItemUpdateFunction {
         void update(View view, int i);
@@ -95,7 +96,7 @@ public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
         if (extras.containsKey("temperatureValues")) {
             String[] temperatureValues = extras.getStringArray("temperatureValues");
             if (temperatureValues == null) {
-                Log.w("BcSmartspaceCardWeatherForecast", "Temperature values array is null.");
+                Log.w(TAG, "Temperature values array is null.");
             } else {
                 updateFields((view, i) -> {
                     ((TextView) view).setText(temperatureValues[i]);
@@ -106,7 +107,7 @@ public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
         if (extras.containsKey("weatherIcons")) {
             Bitmap[] weatherIcons = (Bitmap[]) extras.get("weatherIcons");
             if (weatherIcons == null) {
-                Log.w("BcSmartspaceCardWeatherForecast", "Weather icons array is null.");
+                Log.w(TAG, "Weather icons array is null.");
             } else {
                 updateFields((view2, i2) -> {
                     ((ImageView) view2).setImageBitmap(weatherIcons[i2]);
@@ -117,7 +118,7 @@ public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
         if (extras.containsKey("timestamps")) {
             String[] timestamps = extras.getStringArray("timestamps");
             if (timestamps == null) {
-                Log.w("BcSmartspaceCardWeatherForecast", "Timestamps array is null.");
+                Log.w(TAG, "Timestamps array is null.");
                 return true;
             }
             updateFields((view3, i3) -> {

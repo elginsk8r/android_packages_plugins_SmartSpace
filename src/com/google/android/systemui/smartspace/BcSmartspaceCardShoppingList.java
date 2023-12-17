@@ -17,6 +17,8 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInf
 import java.util.Locale;
 
 public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
+    private static final String TAG = "BcSmartspaceCardShoppingList";
+
     public static final int[] LIST_ITEM_TEXT_VIEW_IDS = {R.id.list_item_1, R.id.list_item_2, R.id.list_item_3};
     public ImageView mCardPromptIconView;
     public TextView mCardPromptView;
@@ -47,7 +49,7 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
         for (int i2 = 0; i2 < 3; i2++) {
             TextView textView = mListItems[i2];
             if (textView == null) {
-                Log.w("BcSmartspaceCardShoppingList", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i2 + 1)));
+                Log.w(TAG, String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i2 + 1)));
                 return;
             }
             textView.setTextColor(i);
@@ -92,7 +94,7 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
                 String string = extras.getString("cardPrompt");
                 TextView textView = mCardPromptView;
                 if (textView == null) {
-                    Log.w("BcSmartspaceCardShoppingList", "No card prompt view to update");
+                    Log.w(TAG, "No card prompt view to update");
                 } else {
                     textView.setText(string);
                 }
@@ -106,7 +108,7 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
                 String string2 = extras.getString("emptyListString");
                 TextView textView2 = mEmptyListMessageView;
                 if (textView2 == null) {
-                    Log.w("BcSmartspaceCardShoppingList", "No empty list message view to update");
+                    Log.w(TAG, "No empty list message view to update");
                 } else {
                     textView2.setText(string2);
                 }
@@ -122,7 +124,7 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
                 for (int i = 0; i < 3; i++) {
                     TextView textView3 = mListItems[i];
                     if (textView3 == null) {
-                        Log.w("BcSmartspaceCardShoppingList", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i + 1)));
+                        Log.w(TAG, String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i + 1)));
                         return true;
                     }
                     if (i < stringArray.length) {

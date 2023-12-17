@@ -15,6 +15,8 @@ import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public final class BcNextAlarmData {
+    private static final String TAG = "BcNextAlarmData";
+
     public static final SmartspaceAction SHOW_ALARMS_ACTION = new SmartspaceAction.Builder("nextAlarmId", "Next alarm").setIntent(new Intent(AlarmClock.ACTION_SHOW_ALARMS)).build();
     public String mDescription;
     public SmartspaceTarget mHolidayAlarmsTarget;
@@ -49,9 +51,9 @@ public final class BcNextAlarmData {
             bcSmartspaceCardLoggingInfo = new BcSmartspaceCardLoggingInfo(builder2);
         }
         if (tapAction == null || (tapAction.getIntent() == null && tapAction.getPendingIntent() == null)) {
-            BcSmartSpaceUtil.setOnClickListener(view, mHolidayAlarmsTarget, SHOW_ALARMS_ACTION, smartspaceEventNotifier, "BcNextAlarmData", bcSmartspaceCardLoggingInfo, 0);
+            BcSmartSpaceUtil.setOnClickListener(view, mHolidayAlarmsTarget, SHOW_ALARMS_ACTION, smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo, 0);
         } else {
-            BcSmartSpaceUtil.setOnClickListener(view, mHolidayAlarmsTarget, tapAction, smartspaceEventNotifier, "BcNextAlarmData", bcSmartspaceCardLoggingInfo, 0);
+            BcSmartSpaceUtil.setOnClickListener(view, mHolidayAlarmsTarget, tapAction, smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo, 0);
         }
     }
 

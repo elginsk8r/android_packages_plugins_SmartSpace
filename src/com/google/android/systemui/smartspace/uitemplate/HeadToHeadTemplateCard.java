@@ -18,6 +18,8 @@ import com.google.android.systemui.smartspace.BcSmartspaceTemplateDataUtils;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
+    private static final String TAG = "HeadToHeadTemplateCard";
+
     public ImageView mFirstCompetitorIcon;
     public TextView mFirstCompetitorText;
     public TextView mHeadToHeadTitle;
@@ -67,14 +69,14 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
         boolean z7;
         HeadToHeadTemplateData templateData = (HeadToHeadTemplateData) smartspaceTarget.getTemplateData();
         if (templateData == null) {
-            Log.w("HeadToHeadTemplateCard", "HeadToHeadTemplateData is null");
+            Log.w(TAG, "HeadToHeadTemplateData is null");
             return false;
         }
         if (templateData.getHeadToHeadTitle() != null) {
             Text headToHeadTitle = templateData.getHeadToHeadTitle();
             TextView textView = mHeadToHeadTitle;
             if (textView == null) {
-                Log.w("HeadToHeadTemplateCard", "No head-to-head title view to update");
+                Log.w(TAG, "No head-to-head title view to update");
                 z7 = false;
             } else {
                 BcSmartspaceTemplateDataUtils.setText(textView, headToHeadTitle);
@@ -88,7 +90,7 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     Text headToHeadFirstCompetitorText = templateData.getHeadToHeadFirstCompetitorText();
                     TextView textView2 = mFirstCompetitorText;
                     if (textView2 == null) {
-                        Log.w("HeadToHeadTemplateCard", "No first competitor text view to update");
+                        Log.w(TAG, "No first competitor text view to update");
                         z6 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setText(textView2, headToHeadFirstCompetitorText);
@@ -106,7 +108,7 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     Text headToHeadSecondCompetitorText = templateData.getHeadToHeadSecondCompetitorText();
                     TextView textView3 = mSecondCompetitorText;
                     if (textView3 == null) {
-                        Log.w("HeadToHeadTemplateCard", "No second competitor text view to update");
+                        Log.w(TAG, "No second competitor text view to update");
                         z5 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setText(textView3, headToHeadSecondCompetitorText);
@@ -124,7 +126,7 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     Icon headToHeadFirstCompetitorIcon = templateData.getHeadToHeadFirstCompetitorIcon();
                     ImageView imageView = mFirstCompetitorIcon;
                     if (imageView == null) {
-                        Log.w("HeadToHeadTemplateCard", "No first competitor icon view to update");
+                        Log.w(TAG, "No first competitor icon view to update");
                         z4 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setIcon(imageView, headToHeadFirstCompetitorIcon);
@@ -142,7 +144,7 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     Icon headToHeadSecondCompetitorIcon = templateData.getHeadToHeadSecondCompetitorIcon();
                     ImageView imageView2 = mSecondCompetitorIcon;
                     if (imageView2 == null) {
-                        Log.w("HeadToHeadTemplateCard", "No second competitor icon view to update");
+                        Log.w(TAG, "No second competitor icon view to update");
                         z3 = false;
                     } else {
                         BcSmartspaceTemplateDataUtils.setIcon(imageView2, headToHeadSecondCompetitorIcon);
@@ -155,7 +157,7 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     z2 = true;
                 }
                 if (z2 && templateData.getHeadToHeadAction() != null) {
-                    BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getHeadToHeadAction(), smartspaceEventNotifier, "HeadToHeadTemplateCard", bcSmartspaceCardLoggingInfo);
+                    BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getHeadToHeadAction(), smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo);
                 }
                 return z2;
             }

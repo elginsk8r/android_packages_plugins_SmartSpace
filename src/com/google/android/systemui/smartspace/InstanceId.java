@@ -5,6 +5,8 @@ import android.app.smartspace.SmartspaceTarget;
 import java.util.UUID;
 
 public class InstanceId {
+    private static final String TAG = "InstanceId";
+
     public static int create(SmartspaceTarget smartspaceTarget) {
         if (smartspaceTarget == null) {
             return SmallHash.hash(UUID.randomUUID().toString());

@@ -14,6 +14,8 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInf
 import java.util.List;
 
 public class BcSmartspaceCardCombinationAtStore extends BcSmartspaceCardCombination {
+    private static final String TAG = "BcSmartspaceCardCombinationAtStore";
+
     public BcSmartspaceCardCombinationAtStore(Context context) {
         super(context);
     }

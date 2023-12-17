@@ -17,6 +17,8 @@ import com.google.android.systemui.smartspace.BcSmartspaceTemplateDataUtils;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
+    private static final String TAG = "SubCardTemplateCard";
+
     public ImageView mImageView;
     public TextView mTextView;
 
@@ -50,7 +52,7 @@ public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
         boolean z;
         SubCardTemplateData templateData = (SubCardTemplateData) smartspaceTarget.getTemplateData();
         if (templateData == null) {
-            Log.w("SubCardTemplateCard", "SubCardTemplateData is null");
+            Log.w(TAG, "SubCardTemplateData is null");
             return false;
         }
         if (templateData.getSubCardIcon() != null) {
@@ -66,7 +68,7 @@ public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
             z = true;
         }
         if (z && templateData.getSubCardAction() != null) {
-            BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getSubCardAction(), smartspaceEventNotifier, "SubCardTemplateCard", bcSmartspaceCardLoggingInfo);
+            BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getSubCardAction(), smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo);
         }
         return z;
     }

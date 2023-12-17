@@ -25,6 +25,8 @@ import java.util.Locale;
 import java.util.function.Predicate;
 
 public class CarouselTemplateCard extends BcSmartspaceCardSecondary {
+    private static final String TAG = "CarouselTemplateCard";
+
     public static final int clinit = 0;
 
     public CarouselTemplateCard(Context context) {
@@ -116,7 +118,7 @@ public class CarouselTemplateCard extends BcSmartspaceCardSecondary {
             }).count());
             if (intExact < 4) {
                 int i3 = 4 - intExact;
-                Log.w("CarouselTemplateCard", String.format(Locale.US, "Hiding %d incomplete column(s).", Integer.valueOf(i3)));
+                Log.w(TAG, String.format(Locale.US, "Hiding %d incomplete column(s).", Integer.valueOf(i3)));
                 for (int i4 = 0; i4 < 4; i4++) {
                     View childAt = getChildAt(i4);
                     if (i4 <= 3 - i3) {
@@ -146,16 +148,16 @@ public class CarouselTemplateCard extends BcSmartspaceCardSecondary {
                 BcSmartspaceTemplateDataUtils.updateVisibility(textView2, 0);
             }
             if (templateData.getCarouselAction() != null) {
-                BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getCarouselAction(), smartspaceEventNotifier, "CarouselTemplateCard", bcSmartspaceCardLoggingInfo);
+                BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getCarouselAction(), smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo);
             }
             for (CarouselTemplateData.CarouselItem carouselItem : templateData.getCarouselItems()) {
                 if (carouselItem.getTapAction() != null) {
-                    BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, carouselItem.getTapAction(), smartspaceEventNotifier, "CarouselTemplateCard", bcSmartspaceCardLoggingInfo);
+                    BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, carouselItem.getTapAction(), smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo);
                 }
             }
             return true;
         }
-        Log.w("CarouselTemplateCard", "CarouselTemplateData is null or has no CarouselItem");
+        Log.w(TAG, "CarouselTemplateData is null or has no CarouselItem");
         return false;
     }
 }

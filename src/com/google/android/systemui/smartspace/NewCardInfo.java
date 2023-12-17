@@ -16,6 +16,8 @@ import com.android.systemui.smartspace.nano.SmartspaceProto;
 import java.io.ByteArrayOutputStream;
 
 public final class NewCardInfo {
+    private static final String TAG = "NewCardInfo";
+
     public final SmartspaceProto.SmartspaceUpdate.SmartspaceCard mCard;
     public final Intent mIntent;
     public final boolean mIsPrimary;
@@ -54,7 +56,7 @@ public final class NewCardInfo {
             }
             return null;
         } catch (Exception e) {
-            Log.e("NewCardInfo", "retrieving bitmap uri=" + mCard.icon.uri + " gsaRes=" + mCard.icon.gsaResourceName);
+            Log.e(TAG, "retrieving bitmap uri=" + mCard.icon.uri + " gsaRes=" + mCard.icon.gsaResourceName);
             return null;
         }
     }

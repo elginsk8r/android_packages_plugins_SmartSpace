@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class BcSmartspaceCard extends ConstraintLayout {
+    private static final String TAG = "BcSmartspaceCard";
+
     public DoubleShadowTextView mBaseActionIconSubtitleView;
     public IcuDateTextView mDateView;
     public final DoubleShadowIconDrawable mDndIconDrawable;
@@ -160,7 +162,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
         DoubleShadowIconDrawable doubleShadowIconDrawable;
         int i;
         if (mSubtitleTextView == null) {
-            Log.w("BcSmartspaceCard", "No subtitle view to update");
+            Log.w(TAG, "No subtitle view to update");
             return;
         }
         mSubtitleTextView.setText(charSequence);
@@ -191,7 +193,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
         boolean z2;
         DoubleShadowIconDrawable doubleShadowIconDrawable;
         if (mTitleTextView == null) {
-            Log.w("BcSmartspaceCard", "No title view to update");
+            Log.w(TAG, "No title view to update");
             return;
         }
         mTitleTextView.setText(charSequence);
@@ -211,7 +213,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
             try {
                 mTitleTextView.setEllipsize(TextUtils.TruncateAt.valueOf(string));
             } catch (IllegalArgumentException e) {
-                Log.e("BcSmartspaceCard", "Invalid TruncateAt value: " + string);
+                Log.e(TAG, "Invalid TruncateAt value: " + string);
             }
         } else if (mTarget != null && mTarget.getFeatureType() == 2 && Locale.ENGLISH.getLanguage().equals(getContext().getResources().getConfiguration().locale.getLanguage())) {
             mTitleTextView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
@@ -334,7 +336,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
         objArr[1] = charSequence;
         objArr[2] = charSequence2;
         objArr[3] = string;
-        Log.i("BcSmartspaceCard", String.format("setFormattedContentDescription: textView=%s, text=%s, iconDescription=%s, contentDescription=%s", objArr));
+        Log.i(TAG, String.format("setFormattedContentDescription: textView=%s, text=%s, iconDescription=%s, contentDescription=%s", objArr));
         textView.setContentDescription(string);
     }
 }

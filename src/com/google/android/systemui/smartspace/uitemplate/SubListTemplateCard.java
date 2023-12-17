@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class SubListTemplateCard extends BcSmartspaceCardSecondary {
+    private static final String TAG = "SubListTemplateCard";
+
     public static final int[] LIST_ITEM_TEXT_VIEW_IDS = {2131362736, 2131362737, 2131362738};
     public ImageView mListIconView;
     public TextView[] mListItems;
@@ -34,7 +36,7 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
         for (int i2 = 0; i2 < 3; i2++) {
             TextView textView = mListItems[i2];
             if (textView == null) {
-                Log.w("SubListTemplateCard", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i2 + 1)));
+                Log.w(TAG, String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i2 + 1)));
                 return;
             }
             textView.setTextColor(i);
@@ -66,7 +68,7 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
     public final boolean setSmartspaceActions(SmartspaceTarget smartspaceTarget, BcSmartspaceDataPlugin.SmartspaceEventNotifier smartspaceEventNotifier, BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo) {
         SubListTemplateData templateData = (SubListTemplateData) smartspaceTarget.getTemplateData();
         if (templateData == null) {
-            Log.w("SubListTemplateCard", "SubListTemplateData is null");
+            Log.w(TAG, "SubListTemplateData is null");
             return false;
         }
         if (templateData.getSubListIcon() != null) {
@@ -87,7 +89,7 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
                 }
                 TextView textView = mListItems[i];
                 if (textView == null) {
-                    Log.w("SubListTemplateCard", String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i + 1)));
+                    Log.w(TAG, String.format(Locale.US, "Missing list item view to update at row: %d", Integer.valueOf(i + 1)));
                     break;
                 }
                 if (i < subListTexts.size()) {
@@ -101,7 +103,7 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
             }
         }
         if (templateData.getSubListAction() != null) {
-            BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getSubListAction(), smartspaceEventNotifier, "SubListTemplateCard", bcSmartspaceCardLoggingInfo);
+            BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, templateData.getSubListAction(), smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo);
             return true;
         }
         return true;

@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import com.android.systemui.bcsmartspace.R;
 
 public class PageIndicator extends LinearLayout {
+    private static final String TAG = "PageIndicator";
+
     public int mCurrentPageIndex;
     public int mNumPages;
     public int mPrimaryColor;
@@ -53,7 +55,7 @@ public class PageIndicator extends LinearLayout {
 
     public void setNumPages(int pages) {
         if (pages <= 0) {
-            Log.w("PageIndicator", "Total number of pages invalid: " + pages + ". Assuming 1 page.");
+            Log.w(TAG, "Total number of pages invalid: " + pages + ". Assuming 1 page.");
             pages = 1;
         }
         if (pages < 2) {

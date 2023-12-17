@@ -44,6 +44,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
+    private static final String TAG = "SubImageTemplateCard";
+
     public static final int clinit = 0;
     public final Handler mHandler;
     public final HashMap mIconDrawableCache;
@@ -86,7 +88,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                         StringBuilder sb = new StringBuilder();
                         sb.append("Unable to decode stream: ");
                         sb.append(e);
-                        Log.e("SubImageTemplateCard", sb.toString());
+                        Log.e(TAG, sb.toString());
                         drawable = null;
                     }
                     drawableWrapper2.mDrawable = drawable;
@@ -95,7 +97,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                     m.append(drawableWrapper2.mUri);
                     m.append(" got exception:");
                     m.append(e2);
-                    Log.w("SubImageTemplateCard", m.toString());
+                    Log.w(TAG, m.toString());
                 }
                 drawableWrapper = drawableWrapper2;
             }
@@ -155,7 +157,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
             final List subImages = templateData.getSubImages();
             TapAction subImageAction = templateData.getSubImageAction();
             if (mImageView == null) {
-                Log.w("SubImageTemplateCard", "No image view can be updated. Skipping background update...");
+                Log.w(TAG, "No image view can be updated. Skipping background update...");
             } else if (subImageAction != null && subImageAction.getExtras() != null) {
                 Bundle extras = subImageAction.getExtras();
                 String string = extras.getString("imageDimensionRatio", "");
@@ -223,7 +225,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                             final int i6 = i4;
                             WeakReference weakReference2 = weakReference;
                             if (!str3.equals(subImageTemplateCard.mPrevSmartspaceTargetId)) {
-                                Log.d("SubImageTemplateCard", "SmartspaceTarget has changed. Skip the loaded result...");
+                                Log.d(TAG, "SmartspaceTarget has changed. Skip the loaded result...");
                                 return;
                             }
                             subImageTemplateCard.mIconDrawableCache.put(str4, drawable);
@@ -237,7 +239,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                                     }
                                 }).collect(Collectors.toList());
                                 if (list2.isEmpty()) {
-                                    Log.w("SubImageTemplateCard", "All images are failed to load. Reset imageView");
+                                    Log.w(TAG, "All images are failed to load. Reset imageView");
                                     ImageView imageView = subImageTemplateCard.mImageView;
                                     if (imageView != null) {
                                         imageView.getLayoutParams().width = -2;
@@ -252,7 +254,7 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                                 imageView2.setImageDrawable(animationDrawable);
                                 int intrinsicWidth = animationDrawable.getIntrinsicWidth();
                                 if (imageView2.getLayoutParams().width != intrinsicWidth) {
-                                    Log.d("SubImageTemplateCard", "imageView requestLayout");
+                                    Log.d(TAG, "imageView requestLayout");
                                     imageView2.getLayoutParams().width = intrinsicWidth;
                                     imageView2.requestLayout();
                                 }
@@ -270,12 +272,12 @@ public class SubImageTemplateCard extends BcSmartspaceCardSecondary {
                 }
             }
             if (subImageAction != null) {
-                BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, subImageAction, smartspaceEventNotifier, "SubImageTemplateCard", bcSmartspaceCardLoggingInfo);
+                BcSmartSpaceUtil.setOnClickListener(this, smartspaceTarget, subImageAction, smartspaceEventNotifier, TAG, bcSmartspaceCardLoggingInfo);
                 return true;
             }
             return true;
         }
-        Log.w("SubImageTemplateCard", "SubImageTemplateData is null or has no SubImage");
+        Log.w(TAG, "SubImageTemplateData is null or has no SubImage");
         return false;
     }
 

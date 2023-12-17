@@ -14,6 +14,8 @@ import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public class BcSmartspaceCardFlight extends BcSmartspaceCardSecondary {
+    private static final String TAG = "BcSmartspaceCardFlight";
+
     public ImageView mQrCodeView;
 
     public BcSmartspaceCardFlight(Context context) {
@@ -52,7 +54,7 @@ public class BcSmartspaceCardFlight extends BcSmartspaceCardSecondary {
         }
         Bitmap bitmap = (Bitmap) extras.get("qrCodeBitmap");
         if (mQrCodeView == null) {
-            Log.w("BcSmartspaceCardFlight", "No flight QR code view to update");
+            Log.w(TAG, "No flight QR code view to update");
         } else {
             mQrCodeView.setImageBitmap(bitmap);
         }
