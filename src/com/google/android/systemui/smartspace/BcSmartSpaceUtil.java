@@ -26,7 +26,7 @@ import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLogger;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
 public final class BcSmartSpaceUtil {
-    private static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
+    public static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
     private static final String GSA_WEATHER_ACTIVITY =
             "com.google.android.apps.search.weather.WeatherExportedActivity";
 
