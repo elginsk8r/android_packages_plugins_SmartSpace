@@ -50,7 +50,7 @@ public final class NewCardInfo {
             }
             if (!TextUtils.isEmpty(mCard.icon.gsaResourceName)) {
                 Intent.ShortcutIconResource shortcutIconResource = new Intent.ShortcutIconResource();
-                shortcutIconResource.packageName = "com.google.android.googlequicksearchbox";
+                shortcutIconResource.packageName = BcSmartSpaceUtil.GSA_PACKAGE;
                 shortcutIconResource.resourceName = mCard.icon.gsaResourceName;
                 return createIconBitmap(shortcutIconResource, context);
             }
