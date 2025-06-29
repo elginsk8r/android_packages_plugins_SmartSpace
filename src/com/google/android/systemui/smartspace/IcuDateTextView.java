@@ -31,7 +31,7 @@ public class IcuDateTextView extends DoubleShadowTextView {
         mTicker = this::onTimeTick;
         mIntentReceiver =
                 new BroadcastReceiver() { // from class:
-                                          // com.google.android.systemui.smartspace.IcuDateTextView.1
+                    // com.google.android.systemui.smartspace.IcuDateTextView.1
                     @Override // android.content.BroadcastReceiver
                     public void onReceive(Context context2, Intent intent) {
                         onTimeChanged(!intent.getAction().equals(Intent.ACTION_TIME_TICK));

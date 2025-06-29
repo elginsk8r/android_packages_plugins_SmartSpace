@@ -25,9 +25,8 @@ public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
     public HashSet<View.OnAttachStateChangeListener> mAttachListeners = new HashSet<>();
     public BcSmartspaceDataPlugin.SmartspaceEventNotifier mEventNotifier = null;
     public View.OnAttachStateChangeListener mStateChangeListener =
-            new View
-                    .OnAttachStateChangeListener() { // from class:
-                                                     // com.google.android.systemui.smartspace.BcSmartspaceDataProvider.1
+            new View.OnAttachStateChangeListener() { // from class:
+                // com.google.android.systemui.smartspace.BcSmartspaceDataProvider.1
                 @Override // android.view.View.OnAttachStateChangeListener
                 public void onViewAttachedToWindow(View view) {
                     mViews.add(view);
@@ -93,7 +92,7 @@ public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
         }
         mSmartspaceTargets.clear();
         for (SmartspaceTarget smartspaceTarget : targets) {
-            if (smartspaceTarget.getFeatureType() != 15) {
+            if (smartspaceTarget.getFeatureType() != SmartspaceTarget.FEATURE_MEDIA) {
                 mSmartspaceTargets.add(smartspaceTarget);
             }
         }

@@ -71,9 +71,8 @@ public class BcSmartspaceView extends FrameLayout
         mAnimateSmartspaceUpdate = false;
         mScrollState = 0;
         mAodObserver =
-                new ContentObserver(
-                        new Handler()) { // from class:
-                                         // com.google.android.systemui.smartspace.BcSmartspaceView.1
+                new ContentObserver(new Handler()) { // from class:
+                    // com.google.android.systemui.smartspace.BcSmartspaceView.1
                     @Override // android.database.ContentObserver
                     public void onChange(boolean z) {
                         onSettingsChanged();
@@ -111,14 +110,14 @@ public class BcSmartspaceView extends FrameLayout
                             Log.w(
                                     TAG,
                                     "Cannot notify target hidden/shown smartspace events: data"
-                                        + " provider null");
+                                            + " provider null");
                             return;
                         }
                         if (targetAtPosition == null) {
                             Log.w(
                                     TAG,
                                     "Cannot notify target hidden smartspace event: previous target"
-                                        + " is null.");
+                                            + " is null.");
                         } else {
                             SmartspaceTargetEvent.Builder builder =
                                     new SmartspaceTargetEvent.Builder(3);
@@ -266,7 +265,7 @@ public class BcSmartspaceView extends FrameLayout
                 obj -> {
                     int q;
                     SmartspaceTarget it = (SmartspaceTarget) obj;
-                    if (it.getFeatureType() == 34) {
+                    if (it.getFeatureType() == SmartspaceTarget.FEATURE_HOLIDAY_ALARM) {
                         mAdapter.mNextAlarmData.mHolidayAlarmsTarget = it;
                         return;
                     }
@@ -409,9 +408,9 @@ public class BcSmartspaceView extends FrameLayout
                             mViewPager, View.TRANSLATION_Y, getHeight() + dimension, 0.0f));
             animatorSet.addListener(
                     new AnimatorListenerAdapter() { // from class:
-                                                    // com.google.android.systemui.smartspace.BcSmartspaceView.3
+                        // com.google.android.systemui.smartspace.BcSmartspaceView.3
                         @Override // android.animation.AnimatorListenerAdapter,
-                                  // android.animation.Animator.AnimatorListener
+                        // android.animation.Animator.AnimatorListener
                         public void onAnimationEnd(Animator animator) {
                             constraintLayout.setTranslationY(0.0f);
                             constraintLayout.setAlpha(1.0f);
@@ -421,7 +420,7 @@ public class BcSmartspaceView extends FrameLayout
                         }
 
                         @Override // android.animation.AnimatorListenerAdapter,
-                                  // android.animation.Animator.AnimatorListener
+                        // android.animation.Animator.AnimatorListener
                         public void onAnimationStart(Animator animator) {
                             viewGroup.getOverlay().add((View) constraintLayout);
                         }
@@ -526,7 +525,7 @@ public class BcSmartspaceView extends FrameLayout
                                     "upcoming_alarm_card_94510_12684",
                                     new ComponentName(getContext(), getClass()),
                                     getContext().getUser())
-                            .setFeatureType(23)
+                            .setFeatureType(SmartspaceTarget.FEATURE_UPCOMING_ALARM)
                             .build(),
                     0,
                     bcSmartspaceEvent);

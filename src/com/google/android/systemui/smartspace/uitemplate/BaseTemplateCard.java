@@ -68,7 +68,7 @@ public class BaseTemplateCard extends ConstraintLayout {
     public BaseTemplateCard(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         mSecondaryCard = null;
-        mFeatureType = 0;
+        mFeatureType = SmartspaceTarget.FEATURE_UNDEFINED;
         mLoggingInfo = null;
         mIconTintColor = GraphicsUtils.getAttrColor(getContext(), 16842806);
         mPrevSmartspaceTargetId = "";

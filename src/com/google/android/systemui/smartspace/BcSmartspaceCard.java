@@ -185,7 +185,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
         mSubtitleTextView.setCompoundDrawablesRelative(doubleShadowIconDrawable, null, null, null);
         SmartspaceTarget smartspaceTarget = mTarget;
         if (smartspaceTarget != null
-                && smartspaceTarget.getFeatureType() == 5
+                && smartspaceTarget.getFeatureType() == SmartspaceTarget.FEATURE_TIPS
                 && !mUsePageIndicatorUi) {
             i = 2;
         } else {
@@ -229,7 +229,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
                 Log.e("BcSmartspaceCard", "Invalid TruncateAt value: " + string);
             }
         } else if (mTarget != null
-                && mTarget.getFeatureType() == 2
+                && mTarget.getFeatureType() == SmartspaceTarget.FEATURE_CALENDAR
                 && Locale.ENGLISH
                         .getLanguage()
                         .equals(
@@ -273,8 +273,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
 
     public final void updateIconTint() {
         if (mTarget != null && mIconDrawable != null) {
-            boolean z = mTarget.getFeatureType() != 1;
-            if (z) {
+            if (mTarget.getFeatureType() != SmartspaceTarget.FEATURE_WEATHER) {
                 mIconDrawable.setTint(mIconTintColor);
             } else {
                 mIconDrawable.setTintList(null);
@@ -293,7 +292,9 @@ public class BcSmartspaceCard extends ConstraintLayout {
         ImageView imageView2 = mNextAlarmImageView;
         boolean z2 = imageView2 != null && imageView2.getVisibility() == 0;
         if ((!z && !z2)
-                || (mUsePageIndicatorUi && (mTarget == null || mTarget.getFeatureType() != 1))) {
+                || (mUsePageIndicatorUi
+                        && (mTarget == null
+                                || mTarget.getFeatureType() != SmartspaceTarget.FEATURE_WEATHER))) {
             z3 = false;
         }
         int i2 = mTopPadding;
@@ -373,7 +374,7 @@ public class BcSmartspaceCard extends ConstraintLayout {
                 "BcSmartspaceCard",
                 String.format(
                         "setFormattedContentDescription: textView=%s, text=%s, iconDescription=%s,"
-                            + " contentDescription=%s",
+                                + " contentDescription=%s",
                         objArr));
         textView.setContentDescription(string);
     }

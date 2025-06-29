@@ -150,7 +150,7 @@ public class CardPagerAdapter extends PagerAdapter {
                 && IntStream.range(0, list.size())
                         .allMatch(
                                 new IntPredicate() { // from class:
-                                                     // com.google.android.systemui.smartspace.CardPagerAdapter.1
+                                    // com.google.android.systemui.smartspace.CardPagerAdapter.1
                                     @Override // java.util.function.IntPredicate
                                     public boolean test(int i) {
                                         return CardPagerAdapter.useRecycledViewForAction(
@@ -474,7 +474,7 @@ public class CardPagerAdapter extends PagerAdapter {
                     .equals(baseTemplateCard.mPrevSmartspaceTargetId)) {
                 baseTemplateCard.mTarget = null;
                 baseTemplateCard.mTemplateData = null;
-                baseTemplateCard.mFeatureType = 0;
+                baseTemplateCard.mFeatureType = SmartspaceTarget.FEATURE_UNDEFINED;
                 baseTemplateCard.mLoggingInfo = null;
                 baseTemplateCard.setOnClickListener(null);
                 baseTemplateCard.resetTextView(baseTemplateCard.mTitleTextView);
@@ -772,7 +772,9 @@ public class CardPagerAdapter extends PagerAdapter {
             bcSmartspaceCard.mIconDrawable.setIcon(iconDrawable);
             CharSequence title = headerAction.getTitle();
             CharSequence subtitle = headerAction.getSubtitle();
-            boolean z7 = smartspaceTarget.getFeatureType() == 1 || !TextUtils.isEmpty(title);
+            boolean z7 =
+                    smartspaceTarget.getFeatureType() == SmartspaceTarget.FEATURE_WEATHER
+                            || !TextUtils.isEmpty(title);
             boolean z11 = !TextUtils.isEmpty(subtitle);
             bcSmartspaceCard.updateZenVisibility();
             if (!z7) {
@@ -814,7 +816,7 @@ public class CardPagerAdapter extends PagerAdapter {
                             "BcSmartspaceCard",
                             String.format(
                                     "Subcard expected but missing type. loggingInfo=%s,"
-                                        + " baseAction=%s",
+                                            + " baseAction=%s",
                                     bcSmartspaceCardLoggingInfo2, baseAction));
                     i3 = 0;
                 }
@@ -865,8 +867,8 @@ public class CardPagerAdapter extends PagerAdapter {
         }
         if (headerAction != null
                 && (headerAction.getIntent() != null || headerAction.getPendingIntent() != null)) {
-            if (smartspaceTarget.getFeatureType() == 1
-                    && bcSmartspaceCardLoggingInfo.mFeatureType == 39) {
+            if (smartspaceTarget.getFeatureType() == SmartspaceTarget.FEATURE_WEATHER
+                    && bcSmartspaceCardLoggingInfo.mFeatureType == SmartspaceTarget.FEATURE_STEP_DATE) {
                 i = BcSmartspaceCard.getClickedIndex(bcSmartspaceCardLoggingInfo, 1);
             } else {
                 i = 0;
@@ -1065,7 +1067,7 @@ public class CardPagerAdapter extends PagerAdapter {
         List<SmartspaceAction> actionChips = target.getActionChips();
         int featureType = target.getFeatureType();
         if (actionChips != null && !actionChips.isEmpty()) {
-            if (featureType != 13 || actionChips.size() != 1) {
+            if (featureType != SmartspaceTarget.FEATURE_SHOPPING_LIST || actionChips.size() != 1) {
                 return -1;
             }
             return -2;
@@ -1080,14 +1082,14 @@ public class CardPagerAdapter extends PagerAdapter {
                                     "date_card_794317_92634",
                                     new ComponentName(mRoot.getContext(), CardPagerAdapter.class),
                                     mRoot.getContext().getUser())
-                            .setFeatureType(1)
+                            .setFeatureType(SmartspaceTarget.FEATURE_WEATHER)
                             .build());
         }
     }
 
     public boolean isMediaPreferred(ArrayList<SmartspaceTarget> targets) {
         return targets.size() == 1
-                && targets.get(0).getFeatureType() == 1
+                && targets.get(0).getFeatureType() == SmartspaceTarget.FEATURE_WEATHER
                 && !mMediaTargets.isEmpty();
     }
 

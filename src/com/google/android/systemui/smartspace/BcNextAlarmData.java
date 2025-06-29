@@ -47,7 +47,7 @@ public final class BcNextAlarmData {
         if (smartspaceTarget == null) {
             BcSmartspaceCardLoggingInfo.Builder builder = new BcSmartspaceCardLoggingInfo.Builder();
             builder.mInstanceId = InstanceId.create("upcoming_alarm_card_94510_12684");
-            builder.mFeatureType = 23;
+            builder.mFeatureType = SmartspaceTarget.FEATURE_UPCOMING_ALARM;
             builder.mDisplaySurface = i;
             bcSmartspaceCardLoggingInfo = new BcSmartspaceCardLoggingInfo(builder);
         } else {

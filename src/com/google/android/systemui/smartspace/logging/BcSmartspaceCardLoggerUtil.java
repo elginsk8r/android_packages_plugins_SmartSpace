@@ -89,10 +89,10 @@ public final class BcSmartspaceCardLoggerUtil {
 
     public static boolean tryForcePrimaryFeatureType(
             BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo) {
-        if (bcSmartspaceCardLoggingInfo.mFeatureType != 1) {
+        if (bcSmartspaceCardLoggingInfo.mFeatureType != SmartspaceTarget.FEATURE_WEATHER) {
             return false;
         }
-        bcSmartspaceCardLoggingInfo.mFeatureType = 39;
+        bcSmartspaceCardLoggingInfo.mFeatureType = SmartspaceTarget.FEATURE_STEP_DATE;
         bcSmartspaceCardLoggingInfo.mInstanceId = InstanceId.create("date_card_794317_92634");
         return true;
     }
