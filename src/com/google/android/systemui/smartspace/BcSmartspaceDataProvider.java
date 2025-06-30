@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
-    public static final boolean DEBUG = Log.isLoggable("BcSmartspaceDataPlugin", 3);
+    public static final String TAG = "BcSmartspaceDataProvider";
+    public static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
     public final HashSet<BcSmartspaceDataPlugin.SmartspaceTargetListener>
             mSmartspaceTargetListeners = new HashSet<>();
     public final ArrayList<SmartspaceTarget> mSmartspaceTargets = new ArrayList<>();
@@ -84,11 +85,9 @@ public final class BcSmartspaceDataProvider implements BcSmartspaceDataPlugin {
 
     public void onTargetsAvailable(List<SmartspaceTarget> targets) {
         if (DEBUG) {
-            Log.d(
-                    "BcSmartspaceDataPlugin",
-                    this + " onTargetsAvailable called. Callers = " + Debug.getCallers(3));
-            Log.d("BcSmartspaceDataPlugin", "    targets.size() = " + targets.size());
-            Log.d("BcSmartspaceDataPlugin", "    targets = " + targets);
+            Log.d(TAG, this + " onTargetsAvailable called. Callers = " + Debug.getCallers(3));
+            Log.d(TAG, "    targets.size() = " + targets.size());
+            Log.d(TAG, "    targets = " + targets);
         }
         mSmartspaceTargets.clear();
         for (SmartspaceTarget smartspaceTarget : targets) {

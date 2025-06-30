@@ -14,7 +14,7 @@ import java.util.List;
 
 public final class BcSmartspaceCardLogger {
     public static final String TAG = "StatsLog";
-    public static final boolean IS_VERBOSE = Log.isLoggable(TAG, 2);
+    public static final boolean IS_VERBOSE = Log.isLoggable(TAG, Log.VERBOSE);
 
     public static void log(EventEnum eventEnum, BcSmartspaceCardLoggingInfo cardInfo) {
         byte[] subcardList;

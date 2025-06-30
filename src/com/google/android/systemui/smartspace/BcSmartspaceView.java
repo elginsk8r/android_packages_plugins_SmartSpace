@@ -48,7 +48,7 @@ public class BcSmartspaceView extends FrameLayout
         implements BcSmartspaceDataPlugin.SmartspaceTargetListener,
                 BcSmartspaceDataPlugin.SmartspaceView {
     public static final String TAG = "BcSmartspaceView";
-    public static final boolean DEBUG = Log.isLoggable(TAG, 3);
+    public static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
     public final CardPagerAdapter mAdapter;
     public boolean mAnimateSmartspaceUpdate;
     public final ContentObserver mAodObserver;
