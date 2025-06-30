@@ -37,10 +37,11 @@ public class CarouselTemplateCard extends BcSmartspaceCardSecondary {
         for (int i = 0; i < getChildCount(); i++) {
             View childAt = getChildAt(i);
             BcSmartspaceTemplateDataUtils.updateVisibility(
-                    childAt.findViewById(R.id.upper_text), 8);
-            BcSmartspaceTemplateDataUtils.updateVisibility(childAt.findViewById(R.id.icon), 8);
+                    childAt.findViewById(R.id.upper_text), View.GONE);
             BcSmartspaceTemplateDataUtils.updateVisibility(
-                    childAt.findViewById(R.id.lower_text), 8);
+                    childAt.findViewById(R.id.icon), View.GONE);
+            BcSmartspaceTemplateDataUtils.updateVisibility(
+                    childAt.findViewById(R.id.lower_text), View.GONE);
         }
     }
 
@@ -147,9 +148,9 @@ public class CarouselTemplateCard extends BcSmartspaceCardSecondary {
                 for (int i4 = 0; i4 < 4; i4++) {
                     View childAt = getChildAt(i4);
                     if (i4 <= 3 - i3) {
-                        i2 = 0;
+                        i2 = View.VISIBLE;
                     } else {
-                        i2 = 8;
+                        i2 = View.GONE;
                     }
                     BcSmartspaceTemplateDataUtils.updateVisibility(childAt, i2);
                 }
@@ -169,15 +170,15 @@ public class CarouselTemplateCard extends BcSmartspaceCardSecondary {
                 BcSmartspaceTemplateDataUtils.setText(
                         textView,
                         ((CarouselTemplateData.CarouselItem) carouselItems.get(i5)).getUpperText());
-                BcSmartspaceTemplateDataUtils.updateVisibility(textView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(textView, View.VISIBLE);
                 BcSmartspaceTemplateDataUtils.setIcon(
                         imageView,
                         ((CarouselTemplateData.CarouselItem) carouselItems.get(i5)).getImage());
-                BcSmartspaceTemplateDataUtils.updateVisibility(imageView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(imageView, View.VISIBLE);
                 BcSmartspaceTemplateDataUtils.setText(
                         textView2,
                         ((CarouselTemplateData.CarouselItem) carouselItems.get(i5)).getLowerText());
-                BcSmartspaceTemplateDataUtils.updateVisibility(textView2, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(textView2, View.VISIBLE);
             }
             if (templateData.getCarouselAction() != null) {
                 BcSmartSpaceUtil.setOnClickListener(

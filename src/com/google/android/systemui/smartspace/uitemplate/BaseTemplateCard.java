@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
@@ -123,15 +124,14 @@ public class BaseTemplateCard extends ConstraintLayout {
         }
         if (mTextGroup != null) {
             ViewGroup viewGroup = mSecondaryCardPane;
-            int i = 0;
             int i2 = 1;
-            boolean z = mDozeAmount == 1.0f || !mValidSecondaryCard;
-            if (z) {
-                i = 8;
+            if (mDozeAmount == 1.0f || !mValidSecondaryCard) {
+                BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup, View.GONE);
+            } else {
+                BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup, View.VISIBLE);
             }
-            BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup, i);
             ViewGroup viewGroup2 = mSecondaryCardPane;
-            if (viewGroup2 != null && viewGroup2.getVisibility() != 8) {
+            if (viewGroup2 != null && viewGroup2.getVisibility() != View.GONE) {
                 ViewGroup viewGroup3 = mTextGroup;
                 if (!isRtl()) {
                     i2 = -1;
@@ -192,7 +192,7 @@ public class BaseTemplateCard extends ConstraintLayout {
         resetTextView(doubleShadowTextView);
         if (subItemInfo == null) {
             Log.d("SsBaseTemplateCard", "Passed-in item info is null");
-            BcSmartspaceTemplateDataUtils.updateVisibility(doubleShadowTextView, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(doubleShadowTextView, View.GONE);
             return;
         }
         Text text2 = subItemInfo.getText();
@@ -232,7 +232,7 @@ public class BaseTemplateCard extends ConstraintLayout {
             BcSmartspaceTemplateDataUtils.offsetTextViewForIcon(
                     doubleShadowTextView, doubleShadowIconDrawable, isRtl());
         }
-        BcSmartspaceTemplateDataUtils.updateVisibility(doubleShadowTextView, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(doubleShadowTextView, View.VISIBLE);
         SmartspaceTarget smartspaceTarget = mTarget;
         TapAction tapAction = subItemInfo.getTapAction();
         BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo = mLoggingInfo;
@@ -309,20 +309,22 @@ public class BaseTemplateCard extends ConstraintLayout {
         ImageView imageView = mDndImageView;
         boolean z4 = true;
         int i = 0;
-        boolean z = imageView != null && imageView.getVisibility() == 0;
+        boolean z = imageView != null && imageView.getVisibility() == View.VISIBLE;
         ImageView imageView2 = mNextAlarmImageView;
-        boolean z2 = imageView2 != null && imageView2.getVisibility() == 0;
+        boolean z2 = imageView2 != null && imageView2.getVisibility() == View.VISIBLE;
         DoubleShadowTextView doubleShadowTextView = mSupplementalLineTextView;
-        boolean z3 = doubleShadowTextView != null && doubleShadowTextView.getVisibility() == 0;
+        boolean z3 =
+                doubleShadowTextView != null
+                        && doubleShadowTextView.getVisibility() == View.VISIBLE;
         if ((!z && !z2 && !z3) || (mShouldShowPageIndicator && mDateView == null)) {
             z4 = false;
         }
         int i2 = mTopPadding;
         if (!z4) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, 4);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, View.INVISIBLE);
             i = i2;
         } else {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, View.VISIBLE);
             updateZenColors();
         }
         setPadding(getPaddingLeft(), i, getPaddingRight(), getPaddingBottom());

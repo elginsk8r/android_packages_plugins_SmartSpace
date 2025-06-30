@@ -64,7 +64,7 @@ public final class BcSmartspaceTemplateDataUtils {
         }
         if (icon == null) {
             Log.w("BcSmartspaceTemplateDataUtils", "Cannot set. The given icon is null");
-            updateVisibility(imageView, 8);
+            updateVisibility(imageView, View.GONE);
         }
         imageView.setImageIcon(icon.getIcon());
         if (icon.getContentDescription() != null) {
@@ -79,7 +79,7 @@ public final class BcSmartspaceTemplateDataUtils {
         }
         if (SmartspaceUtils.isEmpty(text)) {
             Log.w("BcSmartspaceTemplateDataUtils", "Cannot set. The given text is empty");
-            updateVisibility(textView, 8);
+            updateVisibility(textView, View.GONE);
         }
         textView.setText(text.getText());
         textView.setEllipsize(text.getTruncateAtType());

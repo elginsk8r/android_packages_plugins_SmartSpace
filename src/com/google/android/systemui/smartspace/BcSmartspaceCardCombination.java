@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,20 +58,20 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
                     BcSmartSpaceUtil.getIconDrawable(getContext(), smartspaceAction.getIcon());
             boolean z2 = true;
             if (iconDrawable == null) {
-                BcSmartspaceTemplateDataUtils.updateVisibility(imageView, 8);
+                BcSmartspaceTemplateDataUtils.updateVisibility(imageView, View.GONE);
                 z = false;
             } else {
                 imageView.setImageDrawable(iconDrawable);
-                BcSmartspaceTemplateDataUtils.updateVisibility(imageView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(imageView, View.VISIBLE);
                 z = true;
             }
             CharSequence title = smartspaceAction.getTitle();
             if (TextUtils.isEmpty(title)) {
-                BcSmartspaceTemplateDataUtils.updateVisibility(textView, 8);
+                BcSmartspaceTemplateDataUtils.updateVisibility(textView, View.GONE);
                 z2 = z;
             } else {
                 textView.setText(title);
-                BcSmartspaceTemplateDataUtils.updateVisibility(textView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(textView, View.VISIBLE);
             }
             if (z2) {
                 charSequence = smartspaceAction.getContentDescription();
@@ -79,9 +80,9 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
             }
             constraintLayout.setContentDescription(charSequence);
             if (z2) {
-                BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, View.VISIBLE);
             } else {
-                BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 8);
+                BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, View.GONE);
             }
             return z2;
         }
@@ -96,8 +97,8 @@ public class BcSmartspaceCardCombination extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstSubCard, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondSubCard, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstSubCard, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondSubCard, View.GONE);
     }
 
     public final void onFinishInflate() {

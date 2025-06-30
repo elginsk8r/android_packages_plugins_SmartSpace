@@ -181,9 +181,9 @@ public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
                 for (int i7 = 0; i7 < 4; i7++) {
                     View childAt = getChildAt(i7);
                     if (i7 <= i6) {
-                        i4 = 0;
+                        i4 = View.VISIBLE;
                     } else {
-                        i4 = 8;
+                        i4 = View.GONE;
                     }
                     int i42 = i4;
                     BcSmartspaceTemplateDataUtils.updateVisibility(childAt, i42);

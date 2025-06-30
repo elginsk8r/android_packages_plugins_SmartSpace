@@ -7,6 +7,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -50,8 +51,8 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstSubCard, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondSubCard, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstSubCard, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondSubCard, View.GONE);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -100,7 +101,7 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
             BcSmartspaceDataPlugin.SmartspaceEventNotifier smartspaceEventNotifier,
             BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo) {
         if (baseTemplateData == null) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, View.GONE);
             Log.w("CombinedCardsTemplateCard", "Sub-card templateData is null or empty");
             return false;
         }
@@ -108,7 +109,7 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
                 BcSmartspaceTemplateDataUtils.getSecondaryCardRes(
                         baseTemplateData.getTemplateType());
         if (secondaryCardRes == 0) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, View.GONE);
             Log.w("CombinedCardsTemplateCard", "Combined sub-card res is null. Cannot set it up");
             return false;
         }
@@ -135,9 +136,9 @@ public class CombinedCardsTemplateCard extends BcSmartspaceCardSecondary {
         layoutParams.endToEnd = 0;
         layoutParams.topToTop = 0;
         layoutParams.bottomToBottom = 0;
-        BcSmartspaceTemplateDataUtils.updateVisibility(r0, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(r0, View.VISIBLE);
         constraintLayout.addView(r0, layoutParams);
-        BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(constraintLayout, View.VISIBLE);
         return true;
     }
 }

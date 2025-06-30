@@ -6,6 +6,7 @@ import android.app.smartspace.uitemplatedata.Text;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,9 +63,9 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, View.GONE);
         for (int i = 0; i < 3; i++) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mListItems[i], 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListItems[i], View.GONE);
         }
     }
 
@@ -80,9 +81,9 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
         }
         if (templateData.getSubListIcon() != null) {
             BcSmartspaceTemplateDataUtils.setIcon(mListIconView, templateData.getSubListIcon());
-            BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, View.VISIBLE);
         } else {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, View.GONE);
         }
         if (templateData.getSubListTexts() != null) {
             List subListTexts = templateData.getSubListTexts();
@@ -106,10 +107,10 @@ public class SubListTemplateCard extends BcSmartspaceCardSecondary {
                 }
                 if (i < subListTexts.size()) {
                     BcSmartspaceTemplateDataUtils.setText(textView, (Text) subListTexts.get(i));
-                    BcSmartspaceTemplateDataUtils.updateVisibility(textView, 0);
+                    BcSmartspaceTemplateDataUtils.updateVisibility(textView, View.VISIBLE);
                 } else {
                     textView.setText("");
-                    BcSmartspaceTemplateDataUtils.updateVisibility(textView, 8);
+                    BcSmartspaceTemplateDataUtils.updateVisibility(textView, View.GONE);
                 }
                 i++;
             }

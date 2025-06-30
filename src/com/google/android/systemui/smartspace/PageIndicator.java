@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -58,10 +59,10 @@ public class PageIndicator extends LinearLayout {
             pages = 1;
         }
         if (pages < 2) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(this, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(this, View.GONE);
             return;
         }
-        BcSmartspaceTemplateDataUtils.updateVisibility(this, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(this, View.VISIBLE);
         if (pages != mNumPages) {
             mNumPages = pages;
             initializePageIndicators();

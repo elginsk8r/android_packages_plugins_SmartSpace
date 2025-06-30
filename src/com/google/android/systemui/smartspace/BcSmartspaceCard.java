@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
@@ -113,15 +114,14 @@ public class BcSmartspaceCard extends ConstraintLayout {
         }
         if (mTextGroup != null) {
             ViewGroup viewGroup = mSecondaryCardGroup;
-            int i = 0;
+            int i = View.VISIBLE;
             int i2 = 1;
-            boolean z = mDozeAmount == 1.0f || !mValidSecondaryCard;
-            if (z) {
-                i = 8;
+            if (mDozeAmount == 1.0f || !mValidSecondaryCard) {
+                i = View.GONE;
             }
             BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup, i);
             ViewGroup viewGroup2 = mSecondaryCardGroup;
-            if (viewGroup2 != null && viewGroup2.getVisibility() != 8) {
+            if (viewGroup2 != null && viewGroup2.getVisibility() != View.GONE) {
                 ViewGroup viewGroup3 = mTextGroup;
                 if (!isRtl()) {
                     i2 = -1;
@@ -288,9 +288,9 @@ public class BcSmartspaceCard extends ConstraintLayout {
         ImageView imageView = mDndImageView;
         boolean z3 = true;
         int i = 0;
-        boolean z = imageView != null && imageView.getVisibility() == 0;
+        boolean z = imageView != null && imageView.getVisibility() == View.VISIBLE;
         ImageView imageView2 = mNextAlarmImageView;
-        boolean z2 = imageView2 != null && imageView2.getVisibility() == 0;
+        boolean z2 = imageView2 != null && imageView2.getVisibility() == View.VISIBLE;
         if ((!z && !z2)
                 || (mUsePageIndicatorUi
                         && (mTarget == null
@@ -299,10 +299,10 @@ public class BcSmartspaceCard extends ConstraintLayout {
         }
         int i2 = mTopPadding;
         if (!z3) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, 4);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, View.INVISIBLE);
             i = i2;
         } else {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mExtrasGroup, View.VISIBLE);
             if (mNextAlarmTextView != null) {
                 mNextAlarmTextView.setTextColor(mIconTintColor);
             }

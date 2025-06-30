@@ -6,6 +6,7 @@ import android.app.smartspace.uitemplatedata.SubCardTemplateData;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,8 +43,8 @@ public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mTextView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mTextView, View.GONE);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -59,14 +60,14 @@ public class SubCardTemplateCard extends BcSmartspaceCardSecondary {
         }
         if (templateData.getSubCardIcon() != null) {
             BcSmartspaceTemplateDataUtils.setIcon(mImageView, templateData.getSubCardIcon());
-            BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mImageView, View.VISIBLE);
             z = true;
         } else {
             z = false;
         }
         if (!SmartspaceUtils.isEmpty(templateData.getSubCardText())) {
             BcSmartspaceTemplateDataUtils.setText(mTextView, templateData.getSubCardText());
-            BcSmartspaceTemplateDataUtils.updateVisibility(mTextView, 0);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mTextView, View.VISIBLE);
             z = true;
         }
         if (z && templateData.getSubCardAction() != null) {

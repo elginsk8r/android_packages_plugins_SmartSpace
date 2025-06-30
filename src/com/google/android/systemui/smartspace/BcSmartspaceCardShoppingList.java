@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,12 +35,12 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mEmptyListMessageView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptIconView, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mEmptyListMessageView, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptIconView, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptView, View.GONE);
         for (int i = 0; i < 3; i++) {
-            BcSmartspaceTemplateDataUtils.updateVisibility(mListItems[i], 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(mListItems[i], View.GONE);
         }
     }
 
@@ -107,9 +108,10 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
                 } else {
                     textView.setText(string);
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptView, View.VISIBLE);
                 if (bitmap != null) {
-                    BcSmartspaceTemplateDataUtils.updateVisibility(mCardPromptIconView, 0);
+                    BcSmartspaceTemplateDataUtils.updateVisibility(
+                            mCardPromptIconView, View.VISIBLE);
                     return true;
                 }
                 return true;
@@ -121,15 +123,15 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
                 } else {
                     textView2.setText(string2);
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(mEmptyListMessageView, 0);
-                BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mEmptyListMessageView, View.VISIBLE);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, View.VISIBLE);
                 return true;
             } else if (extras.containsKey("listItems")) {
                 String[] stringArray = extras.getStringArray("listItems");
                 if (stringArray.length == 0) {
                     return false;
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mListIconView, View.VISIBLE);
                 for (int i = 0; i < 3; i++) {
                     TextView textView3 = mListItems[i];
                     if (textView3 == null) {
@@ -142,10 +144,10 @@ public class BcSmartspaceCardShoppingList extends BcSmartspaceCardSecondary {
                         return true;
                     }
                     if (i < stringArray.length) {
-                        BcSmartspaceTemplateDataUtils.updateVisibility(textView3, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(textView3, View.VISIBLE);
                         textView3.setText(stringArray[i]);
                     } else {
-                        BcSmartspaceTemplateDataUtils.updateVisibility(textView3, 8);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(textView3, View.VISIBLE);
                         textView3.setText("");
                     }
                 }

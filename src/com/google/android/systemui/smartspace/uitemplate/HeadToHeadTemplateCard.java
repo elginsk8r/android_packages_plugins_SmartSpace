@@ -7,6 +7,7 @@ import android.app.smartspace.uitemplatedata.Text;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,11 +51,11 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mHeadToHeadTitle, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorText, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorText, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorIcon, 8);
-        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorIcon, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mHeadToHeadTitle, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorText, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorText, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorIcon, View.GONE);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorIcon, View.GONE);
     }
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
@@ -83,7 +84,7 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                 z7 = false;
             } else {
                 BcSmartspaceTemplateDataUtils.setText(textView, headToHeadTitle);
-                BcSmartspaceTemplateDataUtils.updateVisibility(mHeadToHeadTitle, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(mHeadToHeadTitle, View.VISIBLE);
                 z7 = true;
             }
             if (z7) {
@@ -99,7 +100,8 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     } else {
                         BcSmartspaceTemplateDataUtils.setText(
                                 textView2, headToHeadFirstCompetitorText);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorText, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(
+                                mFirstCompetitorText, View.VISIBLE);
                         z6 = true;
                     }
                     if (!z6 && !z) {
@@ -119,7 +121,8 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     } else {
                         BcSmartspaceTemplateDataUtils.setText(
                                 textView3, headToHeadSecondCompetitorText);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorText, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(
+                                mSecondCompetitorText, View.VISIBLE);
                         z5 = true;
                     }
                     if (!z5 && !z8) {
@@ -139,7 +142,8 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     } else {
                         BcSmartspaceTemplateDataUtils.setIcon(
                                 imageView, headToHeadFirstCompetitorIcon);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(mFirstCompetitorIcon, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(
+                                mFirstCompetitorIcon, View.VISIBLE);
                         z4 = true;
                     }
                     if (!z4 && !z9) {
@@ -159,7 +163,8 @@ public class HeadToHeadTemplateCard extends BcSmartspaceCardSecondary {
                     } else {
                         BcSmartspaceTemplateDataUtils.setIcon(
                                 imageView2, headToHeadSecondCompetitorIcon);
-                        BcSmartspaceTemplateDataUtils.updateVisibility(mSecondCompetitorIcon, 0);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(
+                                mSecondCompetitorIcon, View.VISIBLE);
                         z3 = true;
                     }
                     if (!z3) {

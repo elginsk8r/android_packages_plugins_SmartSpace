@@ -309,7 +309,7 @@ public class CardPagerAdapter extends PagerAdapter {
                     ViewGroup viewGroup2 = baseTemplateCard2.mSecondaryCardPane;
                     if (viewGroup2 != null) {
                         baseTemplateCard2.mSecondaryCard = bcSmartspaceCardSecondary;
-                        BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup2, 8);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup2, View.GONE);
                         baseTemplateCard2.mSecondaryCardPane.removeAllViews();
                         if (bcSmartspaceCardSecondary != null) {
                             ConstraintLayout.LayoutParams layoutParams =
@@ -367,7 +367,7 @@ public class CardPagerAdapter extends PagerAdapter {
                     ViewGroup viewGroup3 = bcSmartspaceCard2.mSecondaryCardGroup;
                     if (viewGroup3 != null) {
                         bcSmartspaceCard2.mSecondaryCard = bcSmartspaceCardSecondary2;
-                        BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup3, 8);
+                        BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup3, View.GONE);
                         bcSmartspaceCard2.mSecondaryCardGroup.removeAllViews();
                         if (bcSmartspaceCardSecondary2 != null) {
                             ConstraintLayout.LayoutParams layoutParams2 =
@@ -486,19 +486,22 @@ public class CardPagerAdapter extends PagerAdapter {
                 if (imageView != null) {
                     imageView.setImageDrawable(null);
                 }
-                BcSmartspaceTemplateDataUtils.updateVisibility(baseTemplateCard.mTitleTextView, 8);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        baseTemplateCard.mSubtitleTextView, 8);
+                        baseTemplateCard.mTitleTextView, View.GONE);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        baseTemplateCard.mSubtitleSupplementalView, 8);
+                        baseTemplateCard.mSubtitleTextView, View.GONE);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        baseTemplateCard.mSecondaryCardPane, 8);
-                BcSmartspaceTemplateDataUtils.updateVisibility(baseTemplateCard.mDndImageView, 8);
+                        baseTemplateCard.mSubtitleSupplementalView, View.GONE);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        baseTemplateCard.mNextAlarmImageView, 8);
+                        baseTemplateCard.mSecondaryCardPane, View.GONE);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        baseTemplateCard.mNextAlarmTextView, 8);
-                BcSmartspaceTemplateDataUtils.updateVisibility(baseTemplateCard.mExtrasGroup, 4);
+                        baseTemplateCard.mDndImageView, View.GONE);
+                BcSmartspaceTemplateDataUtils.updateVisibility(
+                        baseTemplateCard.mNextAlarmImageView, View.GONE);
+                BcSmartspaceTemplateDataUtils.updateVisibility(
+                        baseTemplateCard.mNextAlarmTextView, View.GONE);
+                BcSmartspaceTemplateDataUtils.updateVisibility(
+                        baseTemplateCard.mExtrasGroup, View.INVISIBLE);
             }
             baseTemplateCard.mPrevSmartspaceTargetId = smartspaceTarget.getSmartspaceTargetId();
             baseTemplateCard.mTarget = smartspaceTarget;
@@ -513,7 +516,7 @@ public class CardPagerAdapter extends PagerAdapter {
             }
             if (baseTemplateCard.mTemplateData == null) {
                 doubleShadowIconDrawable = null;
-                i6 = 8;
+                i6 = View.GONE;
             } else {
                 BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo3 =
                         baseTemplateCard.mLoggingInfo;
@@ -551,9 +554,9 @@ public class CardPagerAdapter extends PagerAdapter {
                 if (viewGroup2 != null) {
                     if (baseTemplateCard.mDozeAmount != 1.0f
                             && baseTemplateCard.mValidSecondaryCard) {
-                        i8 = 0;
+                        i8 = View.VISIBLE;
                     } else {
-                        i8 = 8;
+                        i8 = View.GONE;
                     }
                     BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup2, i8);
                 }
@@ -561,7 +564,7 @@ public class CardPagerAdapter extends PagerAdapter {
                         baseTemplateCard.mTemplateData.getPrimaryItem();
                 if (baseTemplateCard.mDateView == null) {
                     bcNextAlarmData = bcNextAlarmData2;
-                    i5 = 8;
+                    i5 = View.GONE;
                 } else {
                     if (primaryItem != null && primaryItem.getTapAction() != null) {
                         uuid2 = primaryItem.getTapAction().getId().toString();
@@ -573,7 +576,7 @@ public class CardPagerAdapter extends PagerAdapter {
                                     .setIntent(BcSmartSpaceUtil.getOpenCalendarIntent())
                                     .build();
                     bcNextAlarmData = bcNextAlarmData2;
-                    i5 = 8;
+                    i5 = View.GONE;
                     BcSmartSpaceUtil.setOnClickListener(
                             baseTemplateCard.mDateView,
                             baseTemplateCard.mTarget,
@@ -614,7 +617,7 @@ public class CardPagerAdapter extends PagerAdapter {
                         BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(
                                 baseTemplateCard.mNextAlarmImageView, doubleShadowIconDrawable2);
                         BcSmartspaceTemplateDataUtils.updateVisibility(
-                                baseTemplateCard.mNextAlarmImageView, 0);
+                                baseTemplateCard.mNextAlarmImageView, View.VISIBLE);
                         String description = bcNextAlarmData.getDescription(supplementalAlarmItem);
                         baseTemplateCard.mNextAlarmTextView.setContentDescription(
                                 baseTemplateCard
@@ -622,7 +625,7 @@ public class CardPagerAdapter extends PagerAdapter {
                                         .getString(R.string.accessibility_next_alarm, description));
                         baseTemplateCard.mNextAlarmTextView.setText(description);
                         BcSmartspaceTemplateDataUtils.updateVisibility(
-                                baseTemplateCard.mNextAlarmTextView, 0);
+                                baseTemplateCard.mNextAlarmTextView, View.VISIBLE);
                         if (supplementalAlarmItem == null) {
                             tapAction2 = null;
                         } else {
@@ -695,7 +698,7 @@ public class CardPagerAdapter extends PagerAdapter {
                     baseTemplateCard.mDndImageView.setImageDrawable(doubleShadowIconDrawable3);
                     baseTemplateCard.mDndImageView.setContentDescription(mDndDescription);
                     BcSmartspaceTemplateDataUtils.updateVisibility(
-                            baseTemplateCard.mDndImageView, 0);
+                            baseTemplateCard.mDndImageView, View.VISIBLE);
                     BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(
                             baseTemplateCard.mDndImageView, doubleShadowIconDrawable3);
                 }
@@ -725,7 +728,8 @@ public class CardPagerAdapter extends PagerAdapter {
         if (!bcSmartspaceCard.mPrevSmartspaceTargetId.equals(smartspaceTargetId2)) {
             bcSmartspaceCard.mPrevSmartspaceTargetId = smartspaceTargetId2;
             bcSmartspaceCard.mEventNotifier = null;
-            BcSmartspaceTemplateDataUtils.updateVisibility(bcSmartspaceCard.mSecondaryCardGroup, 8);
+            BcSmartspaceTemplateDataUtils.updateVisibility(
+                    bcSmartspaceCard.mSecondaryCardGroup, View.GONE);
             bcSmartspaceCard.mIconDrawable.setIcon(null);
             bcSmartspaceCard.updateZenVisibility();
             bcSmartspaceCard.setTitle(null, null, false);
@@ -760,9 +764,9 @@ public class CardPagerAdapter extends PagerAdapter {
             }
             ViewGroup viewGroup5 = bcSmartspaceCard.mSecondaryCardGroup;
             if (bcSmartspaceCard.mDozeAmount != 1.0f && bcSmartspaceCard.mValidSecondaryCard) {
-                i4 = 8;
+                i4 = View.GONE;
             } else {
-                i4 = 0;
+                i4 = View.VISIBLE;
             }
             BcSmartspaceTemplateDataUtils.updateVisibility(viewGroup5, i4);
             Drawable iconDrawable =
@@ -803,7 +807,7 @@ public class CardPagerAdapter extends PagerAdapter {
                 bcSmartspaceCard.mBaseActionIconSubtitleView.setCompoundDrawablesRelative(
                         drawable, null, null, null);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        bcSmartspaceCard.mBaseActionIconSubtitleView, 0);
+                        bcSmartspaceCard.mBaseActionIconSubtitleView, View.VISIBLE);
                 if (baseAction.getExtras() != null && !baseAction.getExtras().isEmpty()) {
                     i2 = baseAction.getExtras().getInt("subcardType", -1);
                 } else {
@@ -838,7 +842,7 @@ public class CardPagerAdapter extends PagerAdapter {
                 tapAction = null;
                 bcSmartspaceCardLoggingInfo = bcSmartspaceCardLoggingInfo2;
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        bcSmartspaceCard.mBaseActionIconSubtitleView, 4);
+                        bcSmartspaceCard.mBaseActionIconSubtitleView, View.INVISIBLE);
                 bcSmartspaceCard.mBaseActionIconSubtitleView.setOnClickListener(null);
                 bcSmartspaceCard.mBaseActionIconSubtitleView.setContentDescription(null);
             }
@@ -868,7 +872,8 @@ public class CardPagerAdapter extends PagerAdapter {
         if (headerAction != null
                 && (headerAction.getIntent() != null || headerAction.getPendingIntent() != null)) {
             if (smartspaceTarget.getFeatureType() == SmartspaceTarget.FEATURE_WEATHER
-                    && bcSmartspaceCardLoggingInfo.mFeatureType == SmartspaceTarget.FEATURE_STEP_DATE) {
+                    && bcSmartspaceCardLoggingInfo.mFeatureType
+                            == SmartspaceTarget.FEATURE_STEP_DATE) {
                 i = BcSmartspaceCard.getClickedIndex(bcSmartspaceCardLoggingInfo, 1);
             } else {
                 i = 0;
@@ -920,7 +925,7 @@ public class CardPagerAdapter extends PagerAdapter {
         ImageView imageView4 = bcSmartspaceCard.mDndImageView;
         if (imageView4 != null) {
             if (drawable3 == null) {
-                BcSmartspaceTemplateDataUtils.updateVisibility(imageView4, 8);
+                BcSmartspaceTemplateDataUtils.updateVisibility(imageView4, View.GONE);
                 BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(
                         bcSmartspaceCard.mDndImageView, null);
             } else {
@@ -929,7 +934,8 @@ public class CardPagerAdapter extends PagerAdapter {
                 bcSmartspaceCard.mDndImageView.setContentDescription(mDndDescription);
                 BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(
                         bcSmartspaceCard.mDndImageView, bcSmartspaceCard.mDndIconDrawable);
-                BcSmartspaceTemplateDataUtils.updateVisibility(bcSmartspaceCard.mDndImageView, 0);
+                BcSmartspaceTemplateDataUtils.updateVisibility(
+                        bcSmartspaceCard.mDndImageView, View.VISIBLE);
             }
             bcSmartspaceCard.updateZenVisibility();
         }
@@ -938,9 +944,9 @@ public class CardPagerAdapter extends PagerAdapter {
         if (imageView5 != null && bcSmartspaceCard.mNextAlarmTextView != null) {
             Drawable drawable4 = bcNextAlarmData3.mImage;
             if (drawable4 == null) {
-                BcSmartspaceTemplateDataUtils.updateVisibility(imageView5, 8);
+                BcSmartspaceTemplateDataUtils.updateVisibility(imageView5, View.GONE);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        bcSmartspaceCard.mNextAlarmTextView, 8);
+                        bcSmartspaceCard.mNextAlarmTextView, View.GONE);
                 BcSmartspaceTemplateDataUtils.offsetImageViewForIcon(
                         bcSmartspaceCard.mNextAlarmImageView, null);
             } else {
@@ -951,7 +957,7 @@ public class CardPagerAdapter extends PagerAdapter {
                         bcSmartspaceCard.mNextAlarmImageView,
                         bcSmartspaceCard.mNextAlarmIconDrawable);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        bcSmartspaceCard.mNextAlarmImageView, 0);
+                        bcSmartspaceCard.mNextAlarmImageView, View.VISIBLE);
                 String description2 = bcNextAlarmData3.getDescription(null);
                 bcSmartspaceCard.mNextAlarmTextView.setContentDescription(
                         bcSmartspaceCard
@@ -959,7 +965,7 @@ public class CardPagerAdapter extends PagerAdapter {
                                 .getString(R.string.accessibility_next_alarm, description2));
                 bcSmartspaceCard.mNextAlarmTextView.setText(description2);
                 BcSmartspaceTemplateDataUtils.updateVisibility(
-                        bcSmartspaceCard.mNextAlarmTextView, 0);
+                        bcSmartspaceCard.mNextAlarmTextView, View.VISIBLE);
                 bcNextAlarmData3.setOnClickListener(
                         bcSmartspaceCard.mNextAlarmImageView,
                         tapAction,

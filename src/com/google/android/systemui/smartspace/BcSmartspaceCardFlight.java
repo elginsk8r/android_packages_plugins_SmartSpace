@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.android.systemui.bcsmartspace.R;
@@ -30,7 +31,7 @@ public class BcSmartspaceCardFlight extends BcSmartspaceCardSecondary {
 
     @Override // com.google.android.systemui.smartspace.BcSmartspaceCardSecondary
     public final void resetUi() {
-        BcSmartspaceTemplateDataUtils.updateVisibility(mQrCodeView, 8);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mQrCodeView, View.GONE);
     }
 
     public final void onFinishInflate() {
@@ -59,7 +60,7 @@ public class BcSmartspaceCardFlight extends BcSmartspaceCardSecondary {
         } else {
             mQrCodeView.setImageBitmap(bitmap);
         }
-        BcSmartspaceTemplateDataUtils.updateVisibility(mQrCodeView, 0);
+        BcSmartspaceTemplateDataUtils.updateVisibility(mQrCodeView, View.VISIBLE);
         return true;
     }
 }
